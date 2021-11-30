@@ -1,0 +1,115 @@
+/******flex css ********/
+
+.flex {
+    display: flex;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+.flex-nowrap {
+    flex-wrap: nowrap;
+}
+
+.align-content-start {
+    align-content: flex-start;
+}
+
+//左对齐
+.flex-row-start {
+    justify-content: flex-start;
+}
+//右对齐
+.flex-row-end {
+    justify-content: flex-end;
+}
+// 居中
+.flex-row-center {
+    justify-content: center;
+}
+
+// 两端对齐，项目之间的间隔都相等。
+.flex-row-between {
+    justify-content: space-between;
+}
+// 每个项目两侧的间隔相等。所以，项目之间的间隔比项目与边框的间隔大一倍。
+.flex-row-around {
+    justify-content: space-around;
+}
+
+.flex-column-start {
+    align-items: flex-start;
+}
+
+.flex-column-end {
+    align-items: flex-end;
+}
+
+.flex-column-center {
+    align-items: center;
+}
+
+.flex-column-baseline {
+    align-items: baseline;
+}
+
+.flex-column-stretch {
+    align-items: stretch;
+}
+
+.flex-column-self-start {
+    align-self: flex-start;
+}
+
+.flex-column-self-end {
+    align-self: flex-end;
+}
+
+.flex-column-self-center {
+    align-self: center;
+}
+
+.flex-column-self-baseline {
+    align-self: baseline;
+}
+
+.flex-column-self-stretch {
+    align-self: stretch;
+}
+
+.flex-grow0 {
+    flex-grow: 0;
+}
+
+@for $i from 1 to 5 {
+    .flex#{$i} {
+        flex: $i;
+    }
+    .flex-grow#{$i} {
+        flex-grow: $i;
+        flex-basis: 0;
+        overflow: hidden;
+    }
+}
+@for $i from 0 to 5 {
+    .flex-shrink#{$i} {
+        flex-shrink: $i;
+    }
+}
