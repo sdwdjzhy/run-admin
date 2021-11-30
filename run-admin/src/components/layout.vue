@@ -75,10 +75,10 @@ function handleSelect() {
 }
 
 const isCollapse = ref(false);
-const handleOpen = (key, keyPath) => {
+const handleOpen = (key: string, keyPath: string) => {
     console.log(key, keyPath);
 };
-const handleClose = (key, keyPath) => {
+const handleClose = (key: string, keyPath: string) => {
     console.log(key, keyPath);
 };
 const sync = () => {};
