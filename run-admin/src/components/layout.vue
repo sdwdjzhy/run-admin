@@ -1,14 +1,16 @@
 <template>
     <el-container class="h-full">
         <el-aside width="200px">
-            <el-menu default-active="2" class="el-menu-vertical-demo" :collapse="isCollapse" @open="handleOpen" @close="handleClose">
+            <div class="logo" :class="{ collapse: isCollapse }">
+                <el-image :src="logo"></el-image>
+            </div>
+            <el-menu default-active="2" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose">
                 <el-sub-menu index="1">
                     <template #title>
                         <el-icon><location /></el-icon>
                         <span>Navigator One</span>
                     </template>
                     <el-menu-item-group>
-                        <template #title><span>Group One</span></template>
                         <el-menu-item index="1-1">item one</el-menu-item>
                         <el-menu-item index="1-2">item two</el-menu-item>
                     </el-menu-item-group>
@@ -37,6 +39,11 @@
         <el-container>
             <el-header>
                 <div class="flex-row flex-column-center">
+                    <div class="pl-20px pr-20px border-bottom-1px flex-center flex flex-col cursor-pointer custom-bg" style="height: 60px">
+                        <el-icon :size="20" color="#606266" @click="isCollapse = !isCollapse">
+                            <component :is="isCollapse ? 'Expand' : 'Fold'"></component>
+                        </el-icon>
+                    </div>
                     <el-menu :default-active="activeIndex" class="el-menu-demo flex-grow1" mode="horizontal" @select="handleSelect">
                         <el-menu-item index="1">Processing Center</el-menu-item>
                         <el-sub-menu index="2">
@@ -54,7 +61,7 @@
                         <el-menu-item index="3" disabled>Info</el-menu-item>
                         <el-menu-item index="4">Orders</el-menu-item>
                     </el-menu>
-                    <div class="pr20 border-bottom-1 flex-column flex-center" style="height: 60px">
+                    <div class="pr-20px border-bottom-1px flex-column flex-center" style="height: 60px">
                         <el-avatar></el-avatar>
                     </div>
                 </div>
@@ -81,6 +88,8 @@ const handleOpen = (key: string, keyPath: string) => {
 const handleClose = (key: string, keyPath: string) => {
     console.log(key, keyPath);
 };
+
+const logo = ref("");
 const sync = () => {};
 </script>
 

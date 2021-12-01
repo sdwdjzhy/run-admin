@@ -5,6 +5,7 @@ import ElementPlus from "element-plus";
 import * as ElementIcon from "@element-plus/icons";
 import "virtual:windi.css";
 import "./styles/index.scss";
+import "./styles/main.scss";
 import router from "./router";
 import { errorHandler } from "./error";
 import store from "./store";
