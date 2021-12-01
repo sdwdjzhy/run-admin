@@ -1,0 +1,13 @@
+.border-bottom-1px {
+    border-bottom: 1px solid #e6e6e6;
+}
+
+.custom-bg:hover {
+    --el-menu-active-color: var(--el-color-primary);
+    --el-menu-text-color: var(--el-text-color-primary);
+    --el-menu-hover-text-color: var(--el-text-color-primary);
+    --el-menu-bg-color: var(--el-color-white);
+    --el-menu-hover-bg-color: var(--el-color-primary-light-9);
+    color: var(--el-menu-hover-text-color);
+    background-color: var(--el-menu-hover-bg-color);
+}

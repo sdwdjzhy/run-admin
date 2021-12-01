@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "48ecf47f-d5b4-4039-a7cb-8365d280034c": {
+      "ProjectGuid": "48ecf47f-d5b4-4039-a7cb-8365d280034c",
+      "DisplayName": "RunUI.Web",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}
