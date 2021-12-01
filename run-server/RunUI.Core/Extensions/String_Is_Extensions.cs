@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Xml;  
+using System.Xml;
 
 namespace RunUI
 {
@@ -153,7 +153,7 @@ namespace RunUI
                 return str;
             }
         }
-         
+
         /// <summary>
         /// 返回Email的域名
         /// </summary>
@@ -164,38 +164,6 @@ namespace RunUI
             return strEmail.IndexOf("@", StringComparison.Ordinal) < 0 ? "" : strEmail.Substring(strEmail.LastIndexOf("@", StringComparison.Ordinal)).ToLower();
         }
 
-        /// <summary>
-        /// 获取Html里的第一个Img的Src
-        /// </summary>
-        /// <param name="html">html源代码</param>
-        /// <returns></returns>
-        public static string GetFirstImgUrl(this string html)
-        {
-            var regImg = @"<img([^>]*)>";
-            var srcUrl = string.Empty;
-            var reg = new Regex(regImg, RegexOptions.IgnoreCase);
-            var mMatch = reg.Match(html);
-            if (mMatch.Success)
-            {
-                var doc = new XmlDocument();
-                try
-                {
-                    doc.LoadXml(mMatch.Value.Replace("\'", "\"")); //主要是这一块,如果<Img写得不规范,比如说少了引号,会出错
-                    foreach (XmlAttribute a in doc.FirstChild.Attributes)
-                        if (a.Name.ToLower() == "src")
-                        {
-                            srcUrl = a.Value;
-                            break;
-                        }
-                }
-                catch
-                {
-                    srcUrl = string.Empty;
-                }
-            }
-
-            return srcUrl;
-        }
 
         /// <summary>
         /// 使用指定的匹配选项在指定的输入字符串中搜索指定的正则表达式的所有匹配项。
@@ -265,33 +233,6 @@ namespace RunUI
             return txtTextArr;
         }
 
-        /// <summary>
-        /// 获取Html的Title
-        /// </summary>
-        /// <param name="html">html源代码</param>
-        /// <returns></returns>
-        public static string GetTitleUrl(this string html)
-        {
-            var regImg = @"(<title>)([^>]*)>";
-            var srcUrl = string.Empty;
-            var reg = new Regex(regImg, RegexOptions.IgnoreCase);
-            var mMatch = reg.Match(html);
-            if (mMatch.Success)
-            {
-                var doc = new XmlDocument();
-                try
-                {
-                    doc.LoadXml(mMatch.Value.Replace("\'", "\"")); //主要是这一块,如果<Img写得不规范,比如说少了引号,会出错
-                    srcUrl = doc.FirstChild.InnerXml;
-                }
-                catch
-                {
-                    srcUrl = string.Empty;
-                }
-            }
-
-            return srcUrl;
-        }
 
         /// <summary>
         /// 是否[^a-zA-Z0-9]
@@ -417,15 +358,8 @@ namespace RunUI
         public static bool IsGuid(this string str)
         {
             if (str.IsNullOrWhiteSpace()) return false;
-            try
-            {
-                var i = new Guid(str);
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+
+            return Guid.TryParse(str, out _);
         }
 
         /// <summary>
