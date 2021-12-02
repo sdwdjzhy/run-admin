@@ -34,16 +34,6 @@ namespace RunUI
 
         #region Static Fields
 
-        /// <summary>
-        /// Provides cryptographically strong random data for GUID creation.
-        /// </summary>
-        internal static readonly RNGCryptoServiceProvider RandomGenerator = new RNGCryptoServiceProvider();
-
-        public static void GetBytes(byte[] randomBytes)
-        {
-            RandomGenerator.GetBytes(randomBytes);
-        }
-
         #endregion Static Fields
 
         /// <summary>
@@ -95,7 +85,7 @@ namespace RunUI
         {
             // We start with 16 bytes of cryptographically strong random data.
             var randomBytes = new byte[10];
-            RandomGenerator.GetBytes(randomBytes);
+            RandomNumberGenerator.Fill(randomBytes);
 
             // An alternate method: use a normally-created GUID to get our initial random data:
             // byte[] randomBytes = Guid.NewGuid().ToByteArray(); This is faster than using
@@ -177,16 +167,6 @@ namespace RunUI
         public static string GuidString()
         {
             return Create(SequentialGuidType.SequentialAsString).ToShortString();
-        }
-
-        /// <summary>
-        /// 针对 sql server
-        /// </summary>
-        /// <returns></returns>
-        [Obsolete("请使用 DbGuid 代替", false)]
-        public static Guid NewGuid()
-        {
-            return DbGuid();
         }
     }
 }

@@ -2,7 +2,7 @@
 using NLog.Web;
 using RunUI;
 
-var config = NLogExtensions.GetDefaultNLogSetting();
+var config = NLogAspNetCoreExtensions.GetDefaultNLogAspNetCoreSetting();
 var logger = NLogBuilder.ConfigureNLog(config).GetCurrentClassLogger();
 try
 {
@@ -14,6 +14,8 @@ try
     // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
+
+    builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
     var app = builder.Build();
 

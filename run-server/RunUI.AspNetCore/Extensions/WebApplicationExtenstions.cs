@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace RunUI
 {
-    public static class IApplicationBuilderExtenstions
+    public static class WebApplicationExtenstions
     {
         /// <summary>
         /// 使用代理报文头转发
@@ -60,6 +60,7 @@ namespace RunUI
             app.UseRunUIForwardedHeaders();
             app.UseRunUIIgnoreCaseUrl();
             app.UseRunUICors();
+            
         }
     }
 }

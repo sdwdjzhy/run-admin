@@ -38,11 +38,9 @@ namespace RunUI
         /// <param name="stream"></param>
         /// <returns></returns>
         public static async Task<string> ReadToEndAsync(this Stream stream)
-        {            
-            using (var sr = new StreamReader(stream))
-            {
-                return await sr.ReadToEndAsync();
-            }
+        {
+            using var sr = new StreamReader(stream);
+            return await sr.ReadToEndAsync();
         }
 
         /// <summary>

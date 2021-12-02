@@ -2,11 +2,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace RunUI.Api.Controllers
 {
-    [ApiController]
-    [Route("[controller]/[action]")]
-    public class WeatherForecastController : ControllerBase
+    [Area("Default")]
+    [Route("[area]/[controller]/[action]")]
+    public class WeatherForecastController : BaseController
     {
         private readonly ILogger<WeatherForecastController> _logger;
+
 
         public WeatherForecastController(ILogger<WeatherForecastController> logger)
         {
@@ -16,7 +17,7 @@ namespace RunUI.Api.Controllers
         [HttpGet(Name ="asdf")]
         public IEnumerable<int> Get()
         {
-            _logger.LogInformation("adsfasdfasdf");
+            _logger.LogInformation("asdfadsfasdf");
             return new[] { 0 };
         }
     }
