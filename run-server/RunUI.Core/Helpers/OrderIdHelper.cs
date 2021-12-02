@@ -13,6 +13,7 @@ namespace RunUI
     public static class OrderIdHelper
     {
         public static Func<string>? GetOrderIdCustom;
+        private readonly static ObjectIdFactory factory = new ObjectIdFactory();
 
         /// <summary>
         /// 获取编号
@@ -32,12 +33,17 @@ namespace RunUI
 
             var randomBytes = new byte[8];
             RandomNumberGenerator.Fill(randomBytes);
-            return now.ToString("yyyyMMdd") + msecsArray.Select(b => b.ToString("x").PadLeft(2, '0')).Join("") + randomBytes.Select(b => b.ToString("x").PadLeft(2, '0')).Join("");
+            return now.ToString("yyyyMMdd") + msecsArray.Select(b => b.ToString("x2")).Join("") + randomBytes.Select(b => b.ToString("x2")).Join("");
         }
 
         public static string GuidString()
         {
             return SequentialGuid.GuidString();
+        }
+
+        public static string ObjecId()
+        {
+            return factory.NewId();
         }
     }
 }
