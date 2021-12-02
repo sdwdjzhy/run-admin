@@ -22,6 +22,7 @@
   <ItemGroup>
     <ProjectReference Include="..\RunUI.AspNetCore\RunUI.AspNetCore.csproj" />
     <ProjectReference Include="..\RunUI.Core\RunUI.Core.csproj" />
+    <ProjectReference Include="..\RunUI.SysModels\RunUI.SysModels.csproj" />
   </ItemGroup>
 
 </Project>

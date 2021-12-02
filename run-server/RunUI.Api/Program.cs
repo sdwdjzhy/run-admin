@@ -1,21 +1,35 @@
 
 using NLog.Web;
-using RunUI;
+using RunUI; 
 
 var config = NLogAspNetCoreExtensions.GetDefaultNLogAspNetCoreSetting();
 var logger = NLogBuilder.ConfigureNLog(config).GetCurrentClassLogger();
 try
 {
     var builder = WebApplication.CreateBuilder(args);
+    AppConfigHelper.SetConfigurationRoot(builder.Configuration);
     builder.Logging.AddNLogWeb(config);
     builder.Host.UseNLog();
     // Add services to the container.
     builder.Services.AddControllers();
+    builder.Services.AddHttpContextAccessor();
     // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
 
-    builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+
+    var connectionString = builder.Configuration.GetConnectionString("BaseConnectionString");
+
+
+    IFreeSql fsql = new FreeSql.FreeSqlBuilder()
+    .UseConnectionString(FreeSql.DataType.PostgreSQL, connectionString)
+#if DEBUG
+    .UseAutoSyncStructure(true) //自动同步实体结构到数据库，FreeSql不会扫描程序集，只有CRUD时才会生成表。
+#endif
+    .Build();
+    builder.Services.AddSingleton<IFreeSql>(fsql);
+
 
     var app = builder.Build();
 

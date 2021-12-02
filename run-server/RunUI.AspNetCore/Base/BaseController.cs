@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Logging;
 using NLog;
 using System;
@@ -11,13 +12,18 @@ namespace RunUI
 {
     [ApiController]
     [Route("[controller]/[action]")]
-    public abstract class BaseController : ControllerBase
+    public abstract class BaseController : Controller
     {
 
-        protected readonly Logger CurrLogger = LogManager.GetCurrentClassLogger();
+        protected Logger CurrLogger { get; } = LogManager.GetCurrentClassLogger();
 
-        public BaseController()
-        { 
+        protected IFreeSql Orm { get; private set; }
+
+
+        public override void OnActionExecuting(ActionExecutingContext context)
+        {
+            Orm = this.GetService<IFreeSql>();
+            base.OnActionExecuting(context);
         }
     }
 }
