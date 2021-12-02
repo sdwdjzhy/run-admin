@@ -14,7 +14,7 @@ namespace RunUI
         /// </summary>
         /// <param name="p"></param>
         /// <returns></returns>
-        public static string? GetDisplayName(this PropertyInfo p)
+        public static string GetDisplayName(this PropertyInfo p)
         {
             var attr1 = p.GetCustomAttribute(typeof(DisplayNameAttribute));
             if (attr1 != null) return ((DisplayNameAttribute)attr1).DisplayName;
@@ -28,7 +28,7 @@ namespace RunUI
         /// <typeparam name="T"></typeparam>
         /// <param name="prop"></param>
         /// <returns></returns>
-        public static T? GetPropertyAttribute<T>(this PropertyInfo prop) where T : Attribute
+        public static T GetPropertyAttribute<T>(this PropertyInfo prop) where T : Attribute
         {
             return prop.GetPropertyAttributes<T>().FirstOrDefault();
         }

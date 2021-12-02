@@ -51,7 +51,7 @@ namespace RunUI
         /// <param name="type">需要测试的类型。</param>
         /// <param name="generic">泛型接口类型，传入 typeof(IXxx&lt;&gt;)</param>
         /// <returns>如果是泛型接口的子类型，则返回 true，否则返回 false。</returns>
-        public static bool HasImplementedRawGeneric(this Type? type, Type? generic)
+        public static bool HasImplementedRawGeneric(this Type type, Type generic)
         {
             if (type == null) throw new ArgumentNullException(nameof(type));
             if (generic == null) throw new ArgumentNullException(nameof(generic));

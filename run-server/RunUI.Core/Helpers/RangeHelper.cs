@@ -8,7 +8,7 @@ namespace RunUI
 {
     public class RangeHelper
     {
-        public IEnumerable<int> Range(int start, int length)
+        public static IEnumerable<int> Range(int start, int length)
         {
             return Enumerable.Range(start, length);
         }

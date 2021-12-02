@@ -21,7 +21,7 @@ namespace RunUI
         /// <typeparam name="TValue"></typeparam>
         /// <param name="dict"></param>
         /// <returns></returns>
-        public static SortedDictionary<TKey, TValue?> Sort<TKey, TValue>(this Dictionary<TKey, TValue?> dict)
+        public static SortedDictionary<TKey, TValue> Sort<TKey, TValue>(this Dictionary<TKey, TValue> dict)
             where TKey : notnull => new(dict);
 
         /// <summary>

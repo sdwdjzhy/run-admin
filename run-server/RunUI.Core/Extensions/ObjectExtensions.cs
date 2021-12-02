@@ -13,7 +13,7 @@ namespace RunUI
         /// object转换成string（若object为null则返回string.Empty）
         /// </summary>
         /// <param name="source">数据源</param>
-        public static string ToStringExt<T>(this T? source)
+        public static string ToStringExt<T>(this T source)
         {
             return source?.ToString() ?? "";
         }
@@ -25,9 +25,11 @@ namespace RunUI
         /// <param name="o">需要json序列化的对象</param>
         /// <param name="setting">json序列化配置</param>
         /// <returns></returns>
-        public static string JsonSerializeSetting<T>(this T o, JsonSerializerOptions setting)
+        public static string JsonSerialize<T>(this T o, JsonSerializerOptions setting = null)
         {
-            setting = setting ?? DefaultJsonSerializerOptions.GetJsonSerializerOptions();
+            if (o == null) return "";
+
+            setting ??= DefaultJsonSerializerOptions.GetJsonSerializerOptions();
 
             return JsonSerializer.Serialize(o, setting);
         }

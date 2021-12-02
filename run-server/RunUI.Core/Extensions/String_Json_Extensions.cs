@@ -16,7 +16,7 @@ namespace RunUI
         /// <typeparam name="T"></typeparam>
         /// <param name="str"></param>
         /// <returns></returns>
-        public static T? JsonDeserialize<T>(this string? str)
+        public static T JsonDeserialize<T>(this string str)
         {
             if (str.IsNullOrWhiteSpace())
             {
@@ -39,7 +39,7 @@ namespace RunUI
         /// <param name="str"></param>
         /// <param name="enumToInt">枚举是否转为int</param>
         /// <returns></returns>
-        public static T? JsonDeserialize<T>(this string? str, bool enumToInt)
+        public static T JsonDeserialize<T>(this string str, bool enumToInt)
         {
             if (str.IsNullOrWhiteSpace())
             {
@@ -65,7 +65,7 @@ namespace RunUI
         /// <param name="str"></param>
         /// <param name="enumToInt">枚举是否转为int</param>
         /// <returns></returns>
-        public static async ValueTask<T?> JsonDeserialize<T>(this Stream stream, bool enumToInt)
+        public static async ValueTask<T> JsonDeserialize<T>(this Stream stream, bool enumToInt)
         {
             var setting = new JsonSerializerOptions();
             if (enumToInt == false) setting.Converters.Add(new JsonStringEnumConverter());
@@ -79,7 +79,7 @@ namespace RunUI
         /// <param name="str"></param>
         /// <param name="type"></param>
         /// <returns></returns>
-        public static IAsyncEnumerable<T?> JsonDeserializeAsyncEnumerable<T>(this Stream stream)
+        public static IAsyncEnumerable<T> JsonDeserializeAsyncEnumerable<T>(this Stream stream)
         {
             return JsonSerializer.DeserializeAsyncEnumerable<T>(stream);
         }

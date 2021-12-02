@@ -27,7 +27,7 @@ namespace RunUI
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <returns></returns>
-        public bool Equals(T? x, T? y)
+        public bool Equals(T x, T y)
         {
             return EqualityComparer<V>.Default.Equals(keySelector(x), keySelector(y));
         }
