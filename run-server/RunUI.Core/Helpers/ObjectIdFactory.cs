@@ -24,11 +24,7 @@ namespace RunUI
             pidHex = BitConverter.GetBytes(Process.GetCurrentProcess().Id);
             Array.Reverse(pidHex);
         }
-
-        /// 
-        ///Generates a new 24 digit unique number
-        /// 
-        /// 
+          
         public string NewId()
         {
             int copyIdx = 0;
@@ -47,7 +43,7 @@ namespace RunUI
             byte[] inc = BitConverter.GetBytes(GetIncrement());
             Array.Reverse(inc);
             Array.Copy(inc, 1, hex, copyIdx, 3);
-            StringBuilder hexText = new StringBuilder();
+            StringBuilder hexText = new();
             for (int i = 0; i < hex.Length; i++)
             {
                 hexText.Append(hex[i].ToString("x2"));

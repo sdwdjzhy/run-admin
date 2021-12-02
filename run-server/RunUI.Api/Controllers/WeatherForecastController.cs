@@ -14,11 +14,14 @@ namespace RunUI.Api.Controllers
             _logger = logger;
         }
 
-        [HttpGet(Name ="asdf")]
-        public IEnumerable<int> Get()
+        [HttpGet(Name = "asdf")]
+        public string[] Get()
         {
-            _logger.LogInformation("asdfadsfasdf");
-            return new[] { 0 };
+            var id = OrderIdHelper.ObjecId();
+            var id1 = OrderIdHelper.NewId();
+            var id2 = OrderIdHelper.GuidString();
+
+            return new []{ id,id1,id2 };
         }
     }
 }

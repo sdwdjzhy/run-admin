@@ -16,11 +16,10 @@ namespace RunUI
         private readonly static ObjectIdFactory factory = new ObjectIdFactory();
 
         /// <summary>
-        /// 获取编号
-        /// <para>DateTime.Now.ToString("yyyyMMddHHmmssfff") + count.ToString("0000");</para>
+        /// 28位
         /// </summary>
         /// <returns></returns>
-        public static string GetOrderOrginal()
+        public static string NewId()
         {
             var str = GetOrderIdCustom?.Invoke();
             if (str != null && str.IsNullOrWhiteSpace()) return str;
@@ -35,12 +34,18 @@ namespace RunUI
             RandomNumberGenerator.Fill(randomBytes);
             return now.ToString("yyyyMMdd") + msecsArray.Select(b => b.ToString("x2")).Join("") + randomBytes.Select(b => b.ToString("x2")).Join("");
         }
-
+        /// <summary>
+        /// 32位
+        /// </summary>
+        /// <returns></returns>
         public static string GuidString()
         {
             return SequentialGuid.GuidString();
         }
-
+        /// <summary>
+        /// 24位
+        /// </summary>
+        /// <returns></returns>
         public static string ObjecId()
         {
             return factory.NewId();
