@@ -83,6 +83,5 @@ namespace RunUI
         {
             return JsonSerializer.DeserializeAsyncEnumerable<T>(stream);
         }
-
     }
 }
