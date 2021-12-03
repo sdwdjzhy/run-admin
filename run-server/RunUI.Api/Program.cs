@@ -1,6 +1,6 @@
 
 using NLog.Web;
-using RunUI; 
+using RunUI;
 
 var config = NLogAspNetCoreExtensions.GetDefaultNLogAspNetCoreSetting();
 var logger = NLogBuilder.ConfigureNLog(config).GetCurrentClassLogger();
@@ -30,6 +30,22 @@ try
     .Build();
     builder.Services.AddSingleton<IFreeSql>(fsql);
 
+    fsql.Aop.CurdBefore += (s, e) =>
+    {
+        Console.ForegroundColor = ConsoleColor.Yellow;
+        Console.WriteLine("".PadRight(20, '*'));
+        Console.WriteLine($"执行：【{e.Sql}】");
+        Console.WriteLine("".PadRight(20, '*'));
+        Console.ResetColor();
+    };
+    fsql.Aop.CurdBefore += (s, e) =>
+    {
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.WriteLine("".PadRight(20, '*'));
+        Console.WriteLine($"执行成功：【{e.Sql}】");
+        Console.WriteLine("".PadRight(20, '*'));
+        Console.ResetColor();
+    };
 
     var app = builder.Build();
 

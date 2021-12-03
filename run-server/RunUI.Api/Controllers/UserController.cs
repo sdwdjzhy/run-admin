@@ -9,7 +9,6 @@ namespace RunUI.Api.Controllers
         [HttpGet]
         public async Task<object> List(int page = 1, int size = 20)
         {
-            Request.Body
 
             var rows = await Orm.Select<TSysUser>()
                 .Page(page, size)
