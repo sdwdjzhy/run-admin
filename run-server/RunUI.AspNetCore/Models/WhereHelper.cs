@@ -40,10 +40,10 @@ namespace RunUI
         /// <typeparam name="K"></typeparam>
         /// <param name="propertyName"></param>
         /// <param name="value"></param>
-        public void ArrayContains<K>(string propertyName, ICollection<K> value)
+        public void ArrayContains<K>(PropertyInfo property, ICollection<K> value)
         {
             var left = Expression.Constant(value);
-            var right = Expression.Property(Paramater, type.GetProperty(propertyName));
+            var right = Expression.Property(Paramater, property);
             var result = Expression.Call(left, typeof(ICollection<K>).GetMethod("Contains"), right);
             And(result);
         }
@@ -54,14 +54,13 @@ namespace RunUI
         /// <param name="propertyName"></param>
         /// <param name="value"></param>
         /// <param name="t"></param>
-        public void ArrayContains(string propertyName, object value, Type t)
+        public void ArrayContains(PropertyInfo property, object value, Type t)
         {
-            var propertyInfo = type.GetProperty(propertyName);
-            var propertyType = propertyInfo.PropertyType;
+            var propertyType = property.PropertyType;
             if (t.GenericTypeArguments.Length > 0 && propertyType == t.GenericTypeArguments[0])//当类型相同优先走Contains
             {
                 var left = Expression.Constant(value);
-                var right = Expression.Property(Paramater, type.GetProperty(propertyName));
+                var right = Expression.Property(Paramater, property);
                 var result = Expression.Call(left, t.GetMethod("Contains"), right);
                 And(result);
             }
@@ -69,42 +68,22 @@ namespace RunUI
             {
                 //var listType = typeof(List<>).MakeGenericType(propertyType);
                 //var left = Expression.Constant(value, listType);
-                Expression a = null;
-                {//先判断不为空
-                    var p = type.GetProperty(propertyName);
-                    var left = Expression.Property(Paramater, p);
-                    var right = Expression.Constant(null, p.PropertyType);
+                Expression a;
+                {//先判断不为空 
+                    var left = Expression.Property(Paramater, property);
+                    var right = Expression.Constant(null, property.PropertyType);
                     var result = Expression.NotEqual(left, right);
                     a = result;
                     //And(result);
                 }
                 {//再Contains
                     var left = Expression.Constant(value);
-                    var right = Expression.Property(Paramater, type.GetProperty(propertyName));
+                    var right = Expression.Property(Paramater, property);
                     right = Expression.Property(right, "Value");
                     Expression result = Expression.Call(left, t.GetMethod("Contains"), right);
                     result = Expression.AndAlso(a, result);
                     And(result);
                 }
-
-
-                //if (value is System.Collections.IList values)//转化为
-                //{
-                //    var property = Expression.Property(Paramater, propertyInfo);
-                //    var right = Expression.Constant(values[0], propertyType);
-                //    Expression body = Expression.Equal(property, right);
-                //    for (var i = 1; i < values.Count; i++)
-                //    {
-                //        right = Expression.Constant(values[i], propertyType);
-                //        body = Expression.Or(body, Expression.Equal(property, right));
-                //    }
-                //    And(body);
-                //}
-                //else
-                //{
-                //    //未实现
-                //    throw new NotImplementedException("未实现类型不同且非IList的_Arr查询");
-                //}
             }
         }
 
@@ -113,9 +92,9 @@ namespace RunUI
         /// </summary>
         /// <param name="propertyName"></param>
         /// <param name="value"></param>
-        public void Contains(string propertyName, string value)
+        public void Contains(PropertyInfo property, string value)
         {
-            var left = Expression.Property(Paramater, type.GetProperty(propertyName));
+            var left = Expression.Property(Paramater, property);
             var right = Expression.Constant(value);
             var result = Expression.Call(left, typeof(string).GetMethod("Contains", new[] { typeof(string) }), right);
             And(result);
@@ -126,9 +105,9 @@ namespace RunUI
         /// </summary>
         /// <param name="propertyName"></param>
         /// <param name="value"></param>
-        public void EndsWith(string propertyName, string value)
+        public void EndsWith(PropertyInfo property, string value)
         {
-            var left = Expression.Property(Paramater, type.GetProperty(propertyName));
+            var left = Expression.Property(Paramater, property);
             var right = Expression.Constant(value);
             var result = Expression.Call(left, typeof(string).GetMethod("EndsWith", new[] { typeof(string) }), right);
             And(result);
@@ -139,11 +118,11 @@ namespace RunUI
         /// </summary>
         /// <param name="propertyName"></param>
         /// <param name="value"></param>
-        public void Equal<TValue>(string propertyName, TValue value)
+        public void Equal<TValue>(PropertyInfo property, TValue value)
         {
-            var p = type.GetProperty(propertyName);
-            var left = Expression.Property(Paramater, p);
-            var right = Expression.Constant(value, p.PropertyType);
+
+            var left = Expression.Property(Paramater, property);
+            var right = Expression.Constant(value);
             var result = Expression.Equal(left, right);
             And(result);
         }
@@ -152,11 +131,11 @@ namespace RunUI
         /// </summary>
         /// <param name="propertyName"></param>
         /// <param name="value"></param>
-        public void NotEqual<TValue>(string propertyName, TValue value)
+        public void NotEqual<TValue>(PropertyInfo property, TValue value)
         {
-            var p = type.GetProperty(propertyName);
-            var left = Expression.Property(Paramater, p);
-            var right = Expression.Constant(value, p.PropertyType);
+
+            var left = Expression.Property(Paramater, property);
+            var right = Expression.Constant(value);
             var result = Expression.NotEqual(left, right);
             And(result);
         }
@@ -182,11 +161,10 @@ namespace RunUI
         /// </summary>
         /// <param name="propertyName"></param>
         /// <param name="value"></param>
-        public void GreaterThan<TValue>(string propertyName, TValue value)
+        public void GreaterThan<TValue>(PropertyInfo property, TValue value)
         {
-            var prop = type.GetProperty(propertyName);
-            var left = Expression.Property(Paramater, prop);
-            var right = Expression.Constant(value, prop.PropertyType);
+            var left = Expression.Property(Paramater, property);
+            var right = Expression.Constant(value, property.PropertyType);
             var result = Expression.GreaterThan(left, right);
             And(result);
         }
@@ -198,15 +176,13 @@ namespace RunUI
         /// <param name="value"></param>
         /// <param name="liftToNull"></param>
         /// <param name="method"></param>
-        public void GreaterThanOrEqual<TValue>(string propertyName, TValue value, bool liftToNull = false, MethodInfo method = null)
+        public void GreaterThanOrEqual<TValue>(PropertyInfo property, TValue value, bool liftToNull = false, MethodInfo method = null)
         {
-            var prop = type.GetProperty(propertyName);
-            var left = Expression.Property(Paramater, prop);
-            var right = Expression.Constant(value, prop.PropertyType);
+            var left = Expression.Property(Paramater, property);
+            var right = Expression.Constant(value, property.PropertyType);
             var result = Expression.GreaterThanOrEqual(left, right, liftToNull, method);
             And(result);
         }
-
 
         /// <summary>
         /// 大于或等于
@@ -215,12 +191,10 @@ namespace RunUI
         /// <param name="value"></param>
         /// <param name="liftToNull"></param>
         /// <param name="method"></param>
-        public void GreaterThanOrEqual_String<TValue>(string propertyName, TValue value, bool liftToNull = false, MethodInfo method = null)
+        public void GreaterThanOrEqual_String<TValue>(PropertyInfo property, TValue value, bool liftToNull = false, MethodInfo method = null)
         {
-            var prop = type.GetProperty(propertyName);
-
-            var left = Expression.Property(Paramater, prop);
-            var right = Expression.Constant(value, prop.PropertyType);
+            var left = Expression.Property(Paramater, property);
+            var right = Expression.Constant(value);
 
             var result = Expression.GreaterThanOrEqual(Expression.Call(null, method, new Expression[2] { left, right }), Expression.Constant(0, typeof(int)));
 
@@ -236,12 +210,10 @@ namespace RunUI
         /// <param name="value"></param>
         /// <param name="liftToNull"></param>
         /// <param name="method"></param>
-        public void LessThanOrEqual_String<TValue>(string propertyName, TValue value, bool liftToNull = false, MethodInfo method = null)
+        public void LessThanOrEqual_String<TValue>(PropertyInfo property, TValue value, bool liftToNull = false, MethodInfo method = null)
         {
-            var prop = type.GetProperty(propertyName);
-
-            var left = Expression.Property(Paramater, prop);
-            var right = Expression.Constant(value, prop.PropertyType);
+            var left = Expression.Property(Paramater, property);
+            var right = Expression.Constant(value);
 
             var result = Expression.LessThanOrEqual(Expression.Call(null, method, new Expression[2] { left, right }), Expression.Constant(0, typeof(int)));
 
@@ -255,11 +227,11 @@ namespace RunUI
         /// </summary>
         /// <param name="propertyName"></param>
         /// <param name="value"></param>
-        public void LessThan<TValue>(string propertyName, TValue value)
+        public void LessThan<TValue>(PropertyInfo property, TValue value)
         {
-            var prop = type.GetProperty(propertyName);
+            var prop = property;
             var left = Expression.Property(Paramater, prop);
-            var right = Expression.Constant(value, prop.PropertyType);
+            var right = Expression.Constant(value, property.PropertyType);
             var result = Expression.LessThan(left, right);
             And(result);
         }
@@ -271,11 +243,11 @@ namespace RunUI
         /// <param name="value"></param>
         /// <param name="liftToNull"></param>
         /// <param name="method"></param>
-        public void LessThanOrEqual<TValue>(string propertyName, TValue value, bool liftToNull = false, MethodInfo method = null)
+        public void LessThanOrEqual<TValue>(PropertyInfo property, TValue value, bool liftToNull = false, MethodInfo method = null)
         {
-            var prop = type.GetProperty(propertyName);
+            var prop = property;
             var left = Expression.Property(Paramater, prop);
-            var right = Expression.Constant(value, prop.PropertyType);
+            var right = Expression.Constant(value, property.PropertyType);
             var result = Expression.LessThanOrEqual(left, right, liftToNull, method);
             And(result);
         }
@@ -285,9 +257,9 @@ namespace RunUI
         /// </summary>
         /// <param name="propertyName"></param>
         /// <param name="value"></param>
-        public void StartsWith(string propertyName, string value)
+        public void StartsWith(PropertyInfo property, string value)
         {
-            var left = Expression.Property(Paramater, type.GetProperty(propertyName));
+            var left = Expression.Property(Paramater, property);
             var right = Expression.Constant(value);
             var result = Expression.Call(left, typeof(string).GetMethod("StartsWith", new[] { typeof(string) }), right);
             And(result);
