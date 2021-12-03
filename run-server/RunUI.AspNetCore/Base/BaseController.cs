@@ -19,10 +19,11 @@ namespace RunUI
 
         protected IFreeSql Orm { get; private set; }
 
-
+        protected IPathProvider Server { get; private set; }
         public override void OnActionExecuting(ActionExecutingContext context)
         {
             Orm = this.GetService<IFreeSql>();
+            Server = this.GetService<IPathProvider>();
             base.OnActionExecuting(context);
         }
     }

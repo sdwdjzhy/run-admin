@@ -26,15 +26,15 @@ namespace RunUI
         public string MapPath(string path)
         {
             var RootPath = env.ContentRootPath;
-
-            if (path.IsNullOrWhiteSpace()) return RootPath + Path.DirectorySeparatorChar;// "\\";
+            Console.WriteLine($"RootPath:【{RootPath}】");
+            if (path.IsNullOrWhiteSpace()) return RootPath;
 
             path = path.Trim();
             path = path.Replace('/', Path.DirectorySeparatorChar);
 
-            if (path.StartsWithIgnoreCase("~")) return RootPath + path.TrimStart("~");
+            if (path.StartsWithIgnoreCase("~"+ Path.DirectorySeparatorChar)) return RootPath + path[2..];
 
-            if (path.StartsWithIgnoreCase("/")) return Path.Combine(RootPath, path);
+            if (path.StartsWithIgnoreCase(Path.DirectorySeparatorChar.ToString())) return Path.Combine(RootPath, path[1..]);
 
             return path;
         }

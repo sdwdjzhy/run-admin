@@ -179,16 +179,22 @@ namespace RunUI
                 }
                 else if (p.PropertyType.IsEnum || (p.PropertyType.IsNullableType() && p.PropertyType.GenericTypeArguments[0].IsEnum))
                 {
+
+                    var structType = p.PropertyType;
+                    if (structType.IsNullableType())
+                    {
+                        structType = structType.GetGenericArguments()[0];
+                    }
                     //枚举 
-                    if (value != null && value.Type != JTokenType.Null && value.Value != null && value.Value is int @enum)
-                        whereHelper.Equal(p, @enum);
+                    if (value != null && value.Type != JTokenType.Null && value.Value != null && value.Value is long @enum)
+                        whereHelper.Equal(p, Enum.ToObject(structType, @enum));
                     if (item["arr"] != null && item["arr"].Type == JTokenType.Array)
                     {
-                        var list = item["arr"].ToString().JsonDeserialize<List<int>>();
-                        if (list.Any())
-                        {
-                            whereHelper.ArrayContains(p, list);
-                        }
+                        var arrayType = typeof(List<>);
+                        arrayType = arrayType.MakeGenericType(p.PropertyType);
+                        var obj = System.Text.Json.JsonSerializer.Deserialize(item["arr"].ToString(), arrayType);
+
+                        whereHelper.ArrayContains(p, obj, arrayType);
                     }
                 }
                 else if (p.PropertyType.IsNumberType() || (p.PropertyType.IsNullableType() && p.PropertyType.GenericTypeArguments[0].IsNumberType()))
@@ -248,6 +254,14 @@ namespace RunUI
                             {
                                 var list = ss.Select(x => x.ToDoubleOrNull()).Where(i => i.HasValue).Select(x => x.Value).ToList();
                                 whereHelper.ArrayContains(p, list);
+                            }
+                        }
+                        else  
+                        {
+                            var o = GetValue(value, structType, p.Name);
+                            if (o != null)
+                            {
+                                whereHelper.Equal(p, o);
                             }
                         }
                     }

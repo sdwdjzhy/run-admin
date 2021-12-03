@@ -23,6 +23,15 @@ namespace RunUI.Api.Controllers
         }
 
         [HttpGet]
+        public async Task<object> Get()
+        {
+
+            var rows = await Orm.Select<TSysUser>().FirstAsync();
+
+
+            return rows;
+        }
+        [HttpGet]
         public async Task<string> Insert()
         {
             var s = RangeHelper.Range(1, 200).Select(i => new TSysUser

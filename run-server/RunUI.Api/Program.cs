@@ -1,6 +1,9 @@
 
+using Microsoft.Extensions.WebEncoders;
 using NLog.Web;
 using RunUI;
+using System.Text.Encodings.Web;
+using System.Text.Unicode;
 
 var config = NLogAspNetCoreExtensions.GetDefaultNLogAspNetCoreSetting();
 var logger = NLogBuilder.ConfigureNLog(config).GetCurrentClassLogger();
@@ -10,18 +13,14 @@ try
     AppConfigHelper.SetConfigurationRoot(builder.Configuration);
     builder.Logging.AddNLogWeb(config);
     builder.Host.UseNLog();
-    // Add services to the container.
-    builder.Services.AddControllers();
-    builder.Services.AddHttpContextAccessor();
+
+    builder.AddRunUI();
+
     // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
 
-
-
     var connectionString = builder.Configuration.GetConnectionString("BaseConnectionString");
-
-
     IFreeSql fsql = new FreeSql.FreeSqlBuilder()
     .UseConnectionString(FreeSql.DataType.PostgreSQL, connectionString)
 #if DEBUG
@@ -29,7 +28,7 @@ try
 #endif
     .Build();
     builder.Services.AddSingleton<IFreeSql>(fsql);
-
+#if DEBUG
     fsql.Aop.CurdBefore += (s, e) =>
     {
         Console.ForegroundColor = ConsoleColor.Yellow;
@@ -38,15 +37,7 @@ try
         Console.WriteLine("".PadRight(20, '*'));
         Console.ResetColor();
     };
-    fsql.Aop.CurdBefore += (s, e) =>
-    {
-        Console.ForegroundColor = ConsoleColor.Green;
-        Console.WriteLine("".PadRight(20, '*'));
-        Console.WriteLine($"Ö´ÐÐ³É¹¦£º¡¾{e.Sql}¡¿");
-        Console.WriteLine("".PadRight(20, '*'));
-        Console.ResetColor();
-    };
-
+#endif
     var app = builder.Build();
 
     // Configure the HTTP request pipeline.
