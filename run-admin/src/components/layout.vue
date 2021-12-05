@@ -35,8 +35,8 @@
         <el-container>
             <el-header>
                 <div class="flex-row flex-column-center">
-                    <div class="pl-20px pr-20px border-bottom-1px flex-center flex flex-col cursor-pointer custom-bg" style="height: 60px">
-                        <el-icon :size="20" color="#606266" @click="isCollapse = !isCollapse">
+                    <div class="pl-20px pr-20px border-bottom-1px flex-center flex flex-col cursor-pointer custom-bg h-60px" @click="isCollapse = !isCollapse">
+                        <el-icon :size="20" color="#606266">
                             <component :is="isCollapse ? 'Expand' : 'Fold'"></component>
                         </el-icon>
                     </div>
@@ -63,7 +63,9 @@
                 </div>
             </el-header>
             <el-main>
-                <slot> </slot>
+                <router-view v-slot="{ Component }">
+                    <component :is="Component" />
+                </router-view>
             </el-main>
         </el-container>
     </el-container>
