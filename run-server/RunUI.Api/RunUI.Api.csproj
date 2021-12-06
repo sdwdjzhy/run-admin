@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <Nullable>enable</Nullable>
+    <Nullable>disable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>f789b3b8-70a1-4089-8934-57ce52e89627</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
@@ -15,11 +15,13 @@
   <ItemGroup>
     <PackageReference Include="FreeSql" Version="2.6.100" />
     <PackageReference Include="FreeSql.Provider.PostgreSQL" Version="2.6.100" />
+    <PackageReference Include="FreeSql.Repository" Version="2.6.100" />
     <PackageReference Include="NLog.Web.AspNetCore" Version="4.14.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\RunUI.AspNetCore.DefaultProvider\RunUI.AspNetCore.DefaultProvider.csproj" />
     <ProjectReference Include="..\RunUI.AspNetCore\RunUI.AspNetCore.csproj" />
     <ProjectReference Include="..\RunUI.Core\RunUI.Core.csproj" />
     <ProjectReference Include="..\RunUI.SysModels\RunUI.SysModels.csproj" />

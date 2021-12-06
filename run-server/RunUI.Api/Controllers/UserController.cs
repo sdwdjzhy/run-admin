@@ -4,7 +4,7 @@ using RunUI.SysModels;
 
 namespace RunUI.Api.Controllers
 {
-    public class UserController : BaseController
+    public class UserController : BaseCrudTenantController<TSysUser>
     {
         [HttpGet]
         public async Task<object> List(int page = 1, int size = 20)
@@ -39,7 +39,7 @@ namespace RunUI.Api.Controllers
                 Id = OrderIdHelper.ObjecId(),
                 Name = $"name_{i}",
                 Password = "123123",
-                TenantId = 1,
+                TenantId = "1",
             });
 
             await Orm.Insert(s).ExecuteAffrowsAsync();
