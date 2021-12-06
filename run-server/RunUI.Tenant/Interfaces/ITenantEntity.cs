@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace RunUI
 {
-    public interface ITenant
+    public interface ITenantEntity
     {
-        string GetTenantId();
-
-        Tenant GetTenant();
+        string TenantId { get; set; }
     }
 }

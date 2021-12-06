@@ -13,16 +13,8 @@ namespace RunUI.SysModels
     /// 系统用户
     /// </summary>
     [Table(Name = "sys_test")]
-    public class TSysTest
+    public class TSysTest : BaseTenantModel
     {
-        /// <summary>
-        /// 编号
-        /// </summary>
-        [Column(IsPrimary = true, DbType = "varchar(50) NOT NULL")]
-        [Required]
-        [Description("编号")]
-        public string Id { get; set; }
-
         /// <summary>
         /// 名称
         /// </summary>
@@ -32,28 +24,6 @@ namespace RunUI.SysModels
         [Description("名称")]
         public string Name { get; set; }
 
-        /// <summary>
-        /// 创建时间
-        /// </summary>
-        [Column(ServerTime = DateTimeKind.Utc, CanUpdate = false)]
-        [Required]
-        [Description("创建时间")]
-        public DateTime CreateTime { get; set; }
-
-        /// <summary>
-        /// 更新时间
-        /// </summary>
-        [Column(ServerTime = DateTimeKind.Utc)]
-        [Required]
-        [Description("更新时间")]
-        public DateTime UpdateTime { get; set; }
-
-        /// <summary>
-        /// 租户编号
-        /// </summary>
-        [Required]
-        [Description("租户编号")]
-        public int TenantId { get; set; }
 
 
         /// <summary>
@@ -87,14 +57,6 @@ namespace RunUI.SysModels
         [Description("纬度")]
         [Column(DbType = "decimal(18, 15)")]
         public decimal? Lat { get; set; }
-
-
-        /// <summary>
-        /// 是否激活
-        /// </summary> 
-        [Description("是否激活")]
-        public bool IsUsed { get; set; }
-
 
         /// <summary>
         /// 性别

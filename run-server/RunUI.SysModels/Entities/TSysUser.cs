@@ -13,40 +13,25 @@ namespace RunUI.SysModels
     /// 系统用户
     /// </summary>
     [Table(Name ="sys_user")]
-    public class TSysUser
+    public class TSysUser : BaseTenantModel
     {
-        [Column(IsPrimary = true, DbType = "varchar(50) NOT NULL")]
-        [Required]
-        public string Id { get; set; }
-
+        /// <summary>
+        /// 登录用户名
+        /// </summary>
         [MaxLength(255)]
         [Required]
         [Column(IsNullable = false)]
+        [Description("登录用户名")]
         public string Name { get; set; }
 
+        /// <summary>
+        /// 登录密码
+        /// </summary>
         [MaxLength(255)]
         [Required]
         [Column(IsNullable = false)]
+        [Description("登录密码")]
         public string Password { get; set; } 
-
-        [Required]
-        public int TenantId { get; set; }
-
-
-        /// <summary>
-        /// 创建时间
-        /// </summary>
-        [Column(ServerTime = DateTimeKind.Utc, CanUpdate = false)]
-        [Required]
-        [Description("创建时间")]
-        public DateTime CreateTime { get; set; }
-
-        /// <summary>
-        /// 更新时间
-        /// </summary>
-        [Column(ServerTime = DateTimeKind.Utc)]
-        [Required]
-        [Description("更新时间")]
-        public DateTime UpdateTime { get; set; }
+         
     }
 }

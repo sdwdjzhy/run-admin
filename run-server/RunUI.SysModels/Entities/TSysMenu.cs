@@ -13,15 +13,8 @@ namespace RunUI.SysModels
     /// 系统用户
     /// </summary>
     [Table(Name = "sys_menu")]
-    public class TSysMenu
+    public class TSysMenu : BaseTenantModel
     {
-        /// <summary>
-        /// 编号
-        /// </summary>
-        [Column(IsPrimary = true, DbType = "varchar(50) NOT NULL")]
-        [Required]
-        [Description("编号")]
-        public string Id { get; set; }
 
         /// <summary>
         /// 名称
@@ -96,10 +89,5 @@ namespace RunUI.SysModels
         public bool IsHide { get; set; }
 
 
-        /// <summary>
-        /// 租户编号
-        /// </summary>
-        [Description("租户编号")]
-        public int TenantId { get; set; }
     }
 }
