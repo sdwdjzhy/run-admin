@@ -13,13 +13,13 @@ using System.Threading.Tasks;
 namespace RunUI
 {
 
-    public class QueryGenertator<T> where T : class, new()
+    public class QueryHelper<T> where T : class, new()
     {
         Logger Logger = LogManager.GetCurrentClassLogger();
         private readonly Stream stream;
 
         private JObject obj = null;
-        public QueryGenertator(Stream stream)
+        public QueryHelper(Stream stream)
         {
             this.stream = stream;
         }
