@@ -75,5 +75,11 @@ namespace RunUI
             bool IsTheRawGenericType(Type test)
                 => generic == (test.IsGenericType ? test.GetGenericTypeDefinition() : test);
         }
+
+        public static bool IsNumberType(this Type type)
+        {
+            return type == typeof(int) || type == typeof(long) || type == typeof(float) || type == typeof(double) || type == typeof(decimal)
+                    || type == typeof(int?) || type == typeof(long?) || type == typeof(float?) || type == typeof(double?) || type == typeof(decimal?);
+        }
     }
 }
