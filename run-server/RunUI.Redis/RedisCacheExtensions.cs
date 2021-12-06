@@ -1,7 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-
-namespace RunUI
+﻿namespace RunUI
 {
     /// <summary>
     /// </summary>
@@ -27,7 +24,6 @@ namespace RunUI
             await RedisCache.ClearCacheAsync(key);
         }
 
-
         /// <summary>
         /// 清楚Redis缓存
         /// </summary>
@@ -47,8 +43,6 @@ namespace RunUI
         {
             await RedisCache.ClearCacheWithPatternAsync(key);
         }
-
-
 
         /// <summary>
         /// 获取
@@ -73,6 +67,7 @@ namespace RunUI
         {
             return RedisCache.CacheValue(key, func, expiration);
         }
+
         /// <summary>
         /// Redis缓存，带绝对过期时间，只能精确到秒
         /// </summary>
@@ -98,6 +93,7 @@ namespace RunUI
         {
             return await RedisCache.CacheValueAsync(key, func, expiration);
         }
+
         /// <summary>
         /// Redis缓存，带绝对过期时间，只能精确到秒
         /// </summary>

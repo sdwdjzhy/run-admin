@@ -10,14 +10,14 @@ namespace RunUI
         protected IBaseRepository<T> Repository { get; private set; }
         protected ITenantProvider TenantProvider { get; private set; }
 
-        public override void OnActionExecuting(ActionExecutingContext context)
+        public override async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {
-            base.OnActionExecuting(context);
             Orm = this.GetService<IFreeSql>();
             TenantProvider = this.GetService<ITenantProvider>();
 
-            var tenantId = TenantProvider.GetTenantId();
+            var tenantId = await TenantProvider.GetTenantId();
             Repository = Orm.GetRepository<T>(i => i.TenantId == tenantId && i.IsDeleted == false);
+            await base.OnActionExecutionAsync(context, next);
         }
     }
 }

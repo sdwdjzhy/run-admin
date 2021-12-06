@@ -11,7 +11,6 @@ namespace RunUI
         where Converter : IVCardEnumStringCustomerConverter<T>, new()
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="typeToConvert"></param>
         /// <returns></returns>
@@ -24,8 +23,8 @@ namespace RunUI
             else
                 return typeToConvert.IsEnum;
         }
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="typeToConvert"></param>
         /// <param name="options"></param>

@@ -1,6 +1,4 @@
-﻿
-
-using System.Text.Json;
+﻿using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace RunUI
@@ -56,7 +54,6 @@ namespace RunUI
                 throw new Exception($"Json反序列化`{str}`错误。" + ex.Message, ex);
             }
         }
-
 
         /// <summary>
         /// 将json字符串反序列化成类的对象

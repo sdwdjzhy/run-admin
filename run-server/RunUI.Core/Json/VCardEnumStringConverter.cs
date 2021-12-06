@@ -1,7 +1,4 @@
-﻿
-using System;
-using System.Linq;
-using System.Reflection;
+﻿using System.Reflection;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -13,7 +10,6 @@ namespace RunUI
     public class VCardEnumStringConverter : JsonConverterFactory
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="typeToConvert"></param>
         /// <returns></returns>
@@ -26,8 +22,8 @@ namespace RunUI
             else
                 return typeToConvert.IsEnum;
         }
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="typeToConvert"></param>
         /// <param name="options"></param>
@@ -39,7 +35,6 @@ namespace RunUI
     }
 
     /// <summary>
-    /// 
     /// </summary>
     /// <typeparam name="T"></typeparam>
     internal class VCardEnumStringConverter<T> : JsonConverter<T>
@@ -48,13 +43,13 @@ namespace RunUI
         /// 是否 将 不限、未知，在输出时输出成 空字符串
         /// </summary>
         private readonly IVCardEnumStringCustomerConverter<T>? customerConverter = null;
+
         public VCardEnumStringConverter(IVCardEnumStringCustomerConverter<T>? customerConverter)
         {
             this.customerConverter = customerConverter;
         }
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="reader"></param>
         /// <param name="typeToConvert"></param>
@@ -71,7 +66,6 @@ namespace RunUI
             }
             else
             {
-
                 var type = typeof(T);
                 var newType = type;
 
@@ -117,9 +111,7 @@ namespace RunUI
             return value;
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="writer"></param>
         /// <param name="value"></param>

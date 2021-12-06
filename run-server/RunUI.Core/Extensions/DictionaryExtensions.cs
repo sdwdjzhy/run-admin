@@ -1,17 +1,10 @@
-﻿using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Reflection.Emit;
-
-namespace RunUI
+﻿namespace RunUI
 {
     /// <summary>
     /// DictionaryExtensions
     /// </summary>
     public static class DictionaryExtensions
     {
-
         /// <summary>
         /// Returns a new instance of System.Collections.Generic.SortedDictionary&lt;TKey,TValue&gt;
         /// that is based on the specified Dictionary&lt;TKey,TValue&gt; and uses the default

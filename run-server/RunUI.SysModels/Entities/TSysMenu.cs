@@ -1,11 +1,6 @@
 ﻿using FreeSql.DataAnnotations;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RunUI.SysModels
 {
@@ -15,7 +10,6 @@ namespace RunUI.SysModels
     [Table(Name = "sys_menu")]
     public class TSysMenu : BaseTenantModel
     {
-
         /// <summary>
         /// 名称
         /// </summary>
@@ -31,6 +25,7 @@ namespace RunUI.SysModels
         [Description("辅助说明")]
         [StringLength(500, MinimumLength = 0)]
         public string Description { get; set; }
+
         /// <summary>
         /// 菜单图标class
         /// </summary>
@@ -44,6 +39,7 @@ namespace RunUI.SysModels
         [MaxLength(500)]
         [Description("未激活时的自定义菜单图标图片")]
         public string IconImageNotActive { get; set; }
+
         /// <summary>
         /// 激活时的自定义菜单图标图片
         /// </summary>
@@ -58,18 +54,15 @@ namespace RunUI.SysModels
         [Description("父级")]
         public string ParentId { get; set; }
 
-
-
         /// <summary>
         /// 同级别中的排名
-        /// </summary> 
+        /// </summary>
         [Description("同级别中的排名")]
         public int SortId { get; set; }
 
-
         /// <summary>
         /// 路由地址
-        /// </summary> 
+        /// </summary>
         [Description("路由地址")]
         [MaxLength(500)]
         public string Path { get; set; }
@@ -81,13 +74,10 @@ namespace RunUI.SysModels
         [MaxLength(500)]
         public string RouteUrl { get; set; }
 
-
         /// <summary>
         /// 是否隐藏
         /// </summary>
         [Description("是否隐藏。选中后，本菜单只与权限有关")]
         public bool IsHide { get; set; }
-
-
     }
 }

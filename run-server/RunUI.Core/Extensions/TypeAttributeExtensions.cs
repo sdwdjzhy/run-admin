@@ -1,8 +1,4 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-
-namespace RunUI
+﻿namespace RunUI
 {
     /// <summary>
     /// 特性辅助类

@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace RunUI
+﻿namespace RunUI
 {
     /// <summary>
     /// ICollection扩展类

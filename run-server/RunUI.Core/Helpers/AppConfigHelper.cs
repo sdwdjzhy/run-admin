@@ -1,9 +1,4 @@
 ﻿using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RunUI
 {
@@ -28,6 +23,7 @@ namespace RunUI
                 return configurationRoot;
             }
         }
+
         /// <summary>
         /// 设置新的ConfigurationRoot
         /// </summary>
@@ -44,7 +40,6 @@ namespace RunUI
         /// </summary>
         /// <returns></returns>
         public static IConfigurationSection AppSettings => Configuration.GetSection("AppSettings");
-
 
         /// <summary>
         /// 得到AppSettings中的配置字符串信息

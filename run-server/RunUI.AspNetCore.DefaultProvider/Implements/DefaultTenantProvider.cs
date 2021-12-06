@@ -39,7 +39,7 @@ namespace RunUI
             return null;
         }
 
-        public string GetTenantId()
+        public async Task<string> GetTenantId()
         {
             var user = httpContext.User;
             if (user != null || user.Identity.IsAuthenticated)
@@ -47,7 +47,7 @@ namespace RunUI
                 var claims = httpContext.User.Claims.FirstOrDefault(i => i.Type == ClaimTypes.GroupSid);
                 if (claims != null)
                 {
-                    return claims.Value;
+                    return await Task.FromResult(claims.Value);
                 }
             }
             return "1";

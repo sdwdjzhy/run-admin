@@ -1,5 +1,4 @@
-﻿using System;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 
 namespace RunUI
 {
@@ -31,10 +30,6 @@ namespace RunUI
             /// </summary>
             SequentialAtEnd
         }
-
-        #region Static Fields
-
-        #endregion Static Fields
 
         /// <summary>
         /// Returns a new GUID value which is sequentially ordered when formatted as a string, a
@@ -155,6 +150,7 @@ namespace RunUI
         {
             return Create(CurrentGuidType);
         }
+
         /// <summary>
         /// 获取或修改当前DbGuid使用的算法
         /// </summary>

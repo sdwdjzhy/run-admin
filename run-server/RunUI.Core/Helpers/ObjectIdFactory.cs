@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
+﻿using System.Diagnostics;
 using System.Net;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace RunUI
 {
@@ -24,7 +20,7 @@ namespace RunUI
             pidHex = BitConverter.GetBytes(Process.GetCurrentProcess().Id);
             Array.Reverse(pidHex);
         }
-          
+
         public string NewId()
         {
             int copyIdx = 0;
@@ -52,7 +48,7 @@ namespace RunUI
         }
 
         private int GetIncrement() => Interlocked.Increment(ref increment);
-        private int GetTimestamp() => Convert.ToInt32(Math.Floor((DateTime.UtcNow - unixEpoch).TotalSeconds));
 
+        private int GetTimestamp() => Convert.ToInt32(Math.Floor((DateTime.UtcNow - unixEpoch).TotalSeconds));
     }
 }

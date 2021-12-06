@@ -1,6 +1,5 @@
-﻿using System;
+﻿using CSRedis;
 using System.Diagnostics;
-using CSRedis;
 
 namespace RunUI
 {

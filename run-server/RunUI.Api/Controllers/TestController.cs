@@ -7,10 +7,7 @@ using RunUI.SysModels;
 namespace RunUI.Api.Controllers
 {
     public class TestController : BaseCrudTenantController<TSysTest>
-    { 
-        public TestController( )
-        { 
-        }
+    {
 
         [HttpPost]
         public async Task<object> List()
@@ -47,7 +44,7 @@ namespace RunUI.Api.Controllers
             {
                 Id = OrderIdHelper.ObjecId(),
                 Name = $"name_{i}",
-                TenantId = RandomHelper.Next(1,10).ToString(),
+                TenantId = RandomHelper.Next(1, 10).ToString(),
                 Sex = (AppEnum.Sex)RandomHelper.Next(0, 3),
                 HtmlContent = "<br>",
                 Lng = RandomHelper.NextDecimal(0, 180),

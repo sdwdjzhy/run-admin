@@ -1,7 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-
-namespace RunUI
+﻿namespace RunUI
 {
     /// <summary>
     /// </summary>
@@ -53,7 +50,6 @@ namespace RunUI
                 return s.Result;
             return default;
         }
-
 
         /// <summary>
         /// Redis缓存，滑动过期
@@ -133,12 +129,12 @@ namespace RunUI
             var redisKey = "RedisCache-" + pattern;
 
             //var script = $"return redis.call('del', unpack(redis.call('keys','*{pattern}*')))";
-            var script = $@" 
-local dataInfos = redis.call('keys','{redisKey}') 
-if(dataInfos ~= nil) then 
+            var script = $@"
+local dataInfos = redis.call('keys','{redisKey}')
+if(dataInfos ~= nil) then
         for i=1,#dataInfos,1 do
                 redis.call('del',dataInfos[i])
-        end 
+        end
         return #dataInfos
 else
         return 0
@@ -157,12 +153,12 @@ end
             RedisManager.Init();
             var redisKey = "RedisCache-" + pattern;
             //var script = $"return redis.call('del', unpack(redis.call('keys','*{pattern}*')))";
-            var script = $@" 
-local dataInfos = redis.call('keys','{redisKey}') 
-if(dataInfos ~= nil) then 
+            var script = $@"
+local dataInfos = redis.call('keys','{redisKey}')
+if(dataInfos ~= nil) then
         for i=1,#dataInfos,1 do
                 redis.call('del',dataInfos[i])
-        end 
+        end
         return #dataInfos
 else
         return 0
@@ -170,7 +166,6 @@ end
 ";
             await RedisLockHelper.EvalAsync(script, "");
         }
-
 
         /// <summary>
         /// 获取

@@ -226,6 +226,7 @@ namespace RunUI
         {
             return value.SplitWithoutEmpty(",", "，").ToList();
         }
+
         /// <summary>
         /// 分割字符串，支持中英文分号，并删除空白
         /// </summary>
@@ -235,6 +236,7 @@ namespace RunUI
         {
             return value.SplitWithoutEmpty("；", ";").ToList();
         }
+
         /// <summary>
         /// 分割字符串，支持中英文逗号/分号，并删除空白
         /// </summary>

@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace RunUI
 {
     public interface ITenantEntity
     {
+        /// <summary>
+        /// 租户编号
+        /// </summary>
+        [Display(Name = "租户编号")]
         string TenantId { get; set; }
     }
 }

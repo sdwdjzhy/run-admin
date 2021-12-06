@@ -1,11 +1,6 @@
 ﻿using FreeSql.DataAnnotations;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RunUI.SysModels
 {
@@ -24,51 +19,43 @@ namespace RunUI.SysModels
         [Description("名称")]
         public string Name { get; set; }
 
-
-
         /// <summary>
         /// 金额
-        /// </summary> 
+        /// </summary>
         [Description("金额")]
         [Column(DbType = "decimal(18, 4)")]
         public decimal? Money { get; set; }
 
-
         /// <summary>
         /// 价格
-        /// </summary> 
+        /// </summary>
         [Description("价格")]
         [Column(DbType = "decimal(18, 4)")]
         public decimal Price { get; set; }
 
-
-
         /// <summary>
         /// 经度
-        /// </summary> 
+        /// </summary>
         [Description("经度")]
         [Column(DbType = "decimal(18, 15)")]
         public decimal? Lng { get; set; }
 
-
         /// <summary>
         /// 纬度
-        /// </summary> 
+        /// </summary>
         [Description("纬度")]
         [Column(DbType = "decimal(18, 15)")]
         public decimal? Lat { get; set; }
 
         /// <summary>
         /// 性别
-        /// </summary> 
+        /// </summary>
         [Description("性别")]
         public AppEnum.Sex Sex { get; set; }
 
-
-
         /// <summary>
         /// Html内容
-        /// </summary> 
+        /// </summary>
         [Description("Html内容")]
         [Column(DbType = "varchar(5000)")]
         public string HtmlContent { get; set; }

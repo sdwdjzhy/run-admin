@@ -2,6 +2,8 @@
 {
     public class ShortTimeConverter : DateTimeConverter
     {
-        public ShortTimeConverter() : base("HH:mm") { }
+        public ShortTimeConverter() : base("HH:mm")
+        {
+        }
     }
 }

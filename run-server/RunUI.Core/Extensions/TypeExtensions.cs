@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RunUI
+﻿namespace RunUI
 {
     /// <summary>
     /// </summary>
     public static class TypeExtensions
     {
-
         /// <summary>
         /// 是否存在某属性
         /// </summary>
@@ -43,7 +36,6 @@ namespace RunUI
         {
             return theType.IsGenericType && theType.GetGenericTypeDefinition() == typeof(Nullable<>);
         }
-
 
         /// <summary>
         /// 判断指定的类型 <paramref name="type"/> 是否是指定泛型类型的子类型，或实现了指定泛型接口。

@@ -1,8 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-
-namespace RunUI
+﻿namespace RunUI
 {
     /// <summary>
     /// 通用比较
@@ -13,16 +9,16 @@ namespace RunUI
         where V : notnull
     {
         private readonly Func<T, V> keySelector;
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="keySelector"></param>
         public CommonEqualityComparer(Func<T, V> keySelector)
         {
             this.keySelector = keySelector;
         }
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="x"></param>
         /// <param name="y"></param>
@@ -31,8 +27,8 @@ namespace RunUI
         {
             return EqualityComparer<V>.Default.Equals(keySelector(x), keySelector(y));
         }
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
@@ -41,12 +37,12 @@ namespace RunUI
             return EqualityComparer<V>.Default.GetHashCode(keySelector(obj));
         }
     }
+
     /// <summary>
     /// </summary>
     public static class IEnumerableExtensions
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <typeparam name="V"></typeparam>
@@ -57,6 +53,7 @@ namespace RunUI
         {
             return source.Distinct(new CommonEqualityComparer<T, V>(keySelector));
         }
+
         /// <summary>
         /// </summary>
         /// <param name="collection"></param>

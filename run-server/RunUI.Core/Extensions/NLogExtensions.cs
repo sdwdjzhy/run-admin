@@ -7,12 +7,9 @@ namespace RunUI
 {
     public static class NLogExtensions
     {
-
         /// <summary>
         /// 设置默认的日志配置
-        /// <para>
-        /// 如果使用asp.net mvc,需引用NLog.Web,并在Global中，执行此方法之前加入代码
-        /// </para>
+        /// <para>如果使用asp.net mvc,需引用NLog.Web,并在Global中，执行此方法之前加入代码</para>
         /// </summary>
         public static LoggingConfiguration GetDefaultNLogSetting()
         {
@@ -39,8 +36,5 @@ stacktrace:【${stacktrace}】
             LogManager.Configuration = config;
             return config;
         }
-
     }
 }
-
-

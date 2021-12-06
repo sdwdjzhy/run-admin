@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Security.Cryptography;
 
 namespace RunUI
 {
@@ -13,7 +8,7 @@ namespace RunUI
     public static class OrderIdHelper
     {
         public static Func<string>? GetOrderIdCustom;
-        private readonly static ObjectIdFactory factory = new ObjectIdFactory();
+        private static readonly ObjectIdFactory factory = new ObjectIdFactory();
 
         /// <summary>
         /// 28位
@@ -34,6 +29,7 @@ namespace RunUI
             RandomNumberGenerator.Fill(randomBytes);
             return now.ToString("yyyyMMdd") + msecsArray.Select(b => b.ToString("x2")).Join("") + randomBytes.Select(b => b.ToString("x2")).Join("");
         }
+
         /// <summary>
         /// 32位
         /// </summary>
@@ -42,6 +38,7 @@ namespace RunUI
         {
             return SequentialGuid.GuidString();
         }
+
         /// <summary>
         /// 24位
         /// </summary>

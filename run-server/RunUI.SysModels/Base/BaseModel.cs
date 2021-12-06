@@ -1,11 +1,6 @@
 ﻿using FreeSql.DataAnnotations;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RunUI.SysModels
 {
@@ -18,7 +13,6 @@ namespace RunUI.SysModels
         [Required]
         [Description("编号")]
         public string Id { get; set; }
-
 
         /// <summary>
         /// 是否已经删除

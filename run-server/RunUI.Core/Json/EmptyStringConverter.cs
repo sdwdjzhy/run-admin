@@ -8,7 +8,6 @@ namespace RunUI
 
     public class EmptyStringConverter : JsonConverter<string?>
     {
-
         public override string Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
             return reader.GetString() ?? string.Empty;

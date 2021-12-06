@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RunUI.SysModels
+﻿namespace RunUI.SysModels
 {
     public static class FreeSqlCodeFirstExtensions
     {
@@ -14,7 +8,6 @@ namespace RunUI.SysModels
         /// <param name="fsql"></param>
         public static void AddIndexes(this IFreeSql fsql)
         {
-
             var tenantTypes = typeof(TSysTest).Assembly.GetTypes().Where(i => typeof(ITenantEntity).IsAssignableFrom(i)).ToList();
             tenantTypes.ForEach(type =>
             {

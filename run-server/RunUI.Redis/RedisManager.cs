@@ -1,5 +1,4 @@
-﻿using System;
-using CSRedis;
+﻿using CSRedis;
 
 namespace RunUI
 {

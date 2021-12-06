@@ -1,11 +1,6 @@
 ﻿using Newtonsoft.Json;
-using System.Collections.Generic;
 using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Xml;
 
 namespace RunUI
 {
@@ -164,7 +159,6 @@ namespace RunUI
             return strEmail.IndexOf("@", StringComparison.Ordinal) < 0 ? "" : strEmail.Substring(strEmail.LastIndexOf("@", StringComparison.Ordinal)).ToLower();
         }
 
-
         /// <summary>
         /// 使用指定的匹配选项在指定的输入字符串中搜索指定的正则表达式的所有匹配项。
         /// </summary>
@@ -232,7 +226,6 @@ namespace RunUI
 
             return txtTextArr;
         }
-
 
         /// <summary>
         /// 是否[^a-zA-Z0-9]

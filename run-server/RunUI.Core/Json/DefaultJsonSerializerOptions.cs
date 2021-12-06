@@ -1,5 +1,4 @@
-﻿
-using System.Text.Json;
+﻿using System.Text.Json;
 
 namespace RunUI
 {
@@ -32,7 +31,6 @@ namespace RunUI
                 WriteIndented = writeIndented,
                 NumberHandling = System.Text.Json.Serialization.JsonNumberHandling.AllowReadingFromString,
                 AllowTrailingCommas = true,
-
             };
             if (IgnoreNullValues)
             {
@@ -76,7 +74,8 @@ namespace RunUI
             option.Converters.Add(new DateTimeNullableConverter(datetimeFormat));
 
             option.Converters.Add(new VCardEnumStringConverter());
-            // Uoption.Encoder = System.Text.Encodings.Web.JavaScriptEncoder.Create(nicodeRanges.BasicLatin, UnicodeRanges.CjkUnifiedIdeographs);
+            // Uoption.Encoder =
+            // System.Text.Encodings.Web.JavaScriptEncoder.Create(nicodeRanges.BasicLatin, UnicodeRanges.CjkUnifiedIdeographs);
             option.Encoder = System.Text.Encodings.Web.JavaScriptEncoder.Create(System.Text.Unicode.UnicodeRanges.All);
             option.Converters.Add(new EmptyStringConverter());
         }

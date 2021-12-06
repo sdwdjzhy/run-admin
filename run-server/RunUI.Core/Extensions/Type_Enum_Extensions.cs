@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RunUI
 {
@@ -19,15 +14,10 @@ namespace RunUI
 
         /// <summary>
         /// 自定义 获取枚举类型
-        /// <para>
-        ///     第一个参数：枚举类型
-        /// </para>
-        /// <para>
-        ///     第二个参数：当前使用场景
-        /// </para> 
+        /// <para>第一个参数：枚举类型</para>
+        /// <para>第二个参数：当前使用场景</para>
         /// </summary>
         public static Func<Type, string?, List<KeyText<int>>?>? GetEnumListCustom { get => getEnumListCustom; set => getEnumListCustom = value; }
-
 
         /// <summary>
         /// 获取描述
@@ -110,7 +100,6 @@ namespace RunUI
             if (result != null) return result;
             var arr = Enum.GetValues(t);
             return (from int i in arr select new KeyText<int>(i, GetEnumKeyDescription(t, i))).ToList();
-
         }
 
         /// <summary>
