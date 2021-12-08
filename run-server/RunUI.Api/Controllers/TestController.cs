@@ -34,9 +34,84 @@ namespace RunUI.Api.Controllers
         {
             Console.WriteLine(Server.MapPath("~/upload/"));
             var st = await Repository.Where(i => i.Sex == AppEnum.Sex.女).FirstAsync();
-            return st.Name;
+            return st?.Name;
+
         }
 
+        [HttpGet]
+        public string Get2()
+        {
+            var obj = new TreeNode { Id = "xxx", Extra = new() { { "No", 11 }, { "title", "title_" } } };
+
+            return obj.JsonSerialize();
+        }
+        [HttpGet]
+        public List<TreeNode> Get1()
+        {
+            var list = new List<TreeNodeItem>();
+
+            list.Add(new TreeNodeItem
+            {
+                Id = "1",
+                Name = "name_1",
+                ParentId = null,
+                Weight = 1,
+                Extra = new() { { "No", "no_1" } }
+            });
+            list.Add(new TreeNodeItem
+            {
+                Id = "2",
+                Name = "name_2",
+                ParentId = "",
+                Weight = 2,
+                Extra = new() { { "No", "no_2" } }
+            });
+            list.Add(new TreeNodeItem
+            {
+                Id = "3",
+                Name = "name_1-3",
+                ParentId = "1",
+                Weight = 1,
+                Extra = new() { { "No", "no_3" } }
+            });
+
+            var js = list.JsonSerialize();
+            Console.WriteLine(js);
+            return TreeNodeHelper.Make(list, null);
+        }
+        [HttpGet]
+        public List<TreeNode<int>> Get3()
+        {
+            var list = new List<TreeNodeItem<int>>();
+
+            list.Add(new TreeNodeItem<int>
+            {
+                Id = 1,
+                Name = "name_1",
+                ParentId = null,
+                Weight = 1,
+                Extra = new() { { "No", "no_1" } }
+            });
+            list.Add(new TreeNodeItem<int>
+            {
+                Id = 2,
+                Name = "name_2",
+                ParentId = null,
+                Weight = 2,
+                Extra = new() { { "No", "no_2" } }
+            });
+            list.Add(new TreeNodeItem<int>
+            {
+                Id = 3,
+                Name = "name_1-3",
+                ParentId = 1,
+                Weight = 1,
+                Extra = new() { { "No", "no_3" } }
+            });
+            var js = list.JsonSerialize();
+            Console.WriteLine(js);
+            return TreeNodeHelper.Make(list, null);
+        }
         [HttpGet]
         public async Task<string> Insert()
         {

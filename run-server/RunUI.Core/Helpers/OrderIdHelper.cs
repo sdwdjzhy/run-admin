@@ -7,7 +7,7 @@ namespace RunUI
     /// </summary>
     public static class OrderIdHelper
     {
-        public static Func<string>? GetOrderIdCustom;
+        public static Func<string> GetOrderIdCustom;
         private static readonly ObjectIdFactory factory = new ObjectIdFactory();
 
         /// <summary>

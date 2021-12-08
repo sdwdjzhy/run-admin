@@ -29,10 +29,10 @@ namespace RunUI
         /// <param name="typeToConvert"></param>
         /// <param name="options"></param>
         /// <returns></returns>
-        public override JsonConverter? CreateConverter(Type typeToConvert, JsonSerializerOptions options)
+        public override JsonConverter CreateConverter(Type typeToConvert, JsonSerializerOptions options)
         {
             var converter = Activator.CreateInstance<Converter>();
-            return (JsonConverter?)Activator.CreateInstance(typeof(VCardEnumStringConverter<>).MakeGenericType(typeToConvert), BindingFlags.Instance | BindingFlags.Public, null, new object[] { converter }, null);
+            return (JsonConverter)Activator.CreateInstance(typeof(VCardEnumStringConverter<>).MakeGenericType(typeToConvert), BindingFlags.Instance | BindingFlags.Public, null, new object[] { converter }, null);
         }
     }
 }

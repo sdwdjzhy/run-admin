@@ -13,7 +13,7 @@ namespace RunUI
         /// <param name="str"></param>
         /// <param name="s"></param>
         /// <returns></returns>
-        public static bool ContainsIgnoreCase(this string? str, string? s)
+        public static bool ContainsIgnoreCase(this string str, string s)
         {
             if (s == null) return true;
             if (str.IsNullOrWhiteSpace() && s.IsNullOrWhiteSpace()) return true;
@@ -27,7 +27,7 @@ namespace RunUI
         /// <param name="str"></param>
         /// <param name="s"></param>
         /// <returns></returns>
-        public static bool EndsWithIgnoreCase(this string? str, string? s)
+        public static bool EndsWithIgnoreCase(this string str, string s)
         {
             if (str.IsNullOrWhiteSpace() && s.IsNullOrWhiteSpace()) return true;
             if (str.IsNullOrWhiteSpace()) return false;
@@ -41,7 +41,7 @@ namespace RunUI
         /// <param name="str"></param>
         /// <param name="s"></param>
         /// <returns></returns>
-        public static bool EqualsIgnoreCase(this string? str, string? s)
+        public static bool EqualsIgnoreCase(this string str, string s)
         {
             if (str == null) return s == null;
             if (str.IsNullOrWhiteSpace() && s.IsNullOrWhiteSpace()) return true;
@@ -53,7 +53,7 @@ namespace RunUI
         /// </summary>
         /// <param name="str"></param>
         /// <returns></returns>
-        public static bool HasValue(this string? str)
+        public static bool HasValue(this string str)
         {
             return !str.IsNullOrWhiteSpace();
         }
@@ -63,9 +63,8 @@ namespace RunUI
         /// </summary>
         /// <param name="s"></param>
         /// <returns></returns>
-        public static bool IsNullOrWhiteSpace(this string? s)
+        public static bool IsNullOrWhiteSpace(this string s)
         {
-            if (s == null) return false;
             return string.IsNullOrWhiteSpace(s);
         }
 
@@ -75,7 +74,7 @@ namespace RunUI
         /// <param name="s"></param>
         /// <param name="defaultValue"></param>
         /// <returns></returns>
-        public static string NullWhiteSpaceForDefault(this string? s, string defaultValue = "")
+        public static string NullWhiteSpaceForDefault(this string s, string defaultValue = "")
         {
             if (s == null || s.IsNullOrWhiteSpace())
                 return defaultValue;
@@ -89,7 +88,7 @@ namespace RunUI
         /// <param name="regexPattern"></param>
         /// <param name="replaceValue"></param>
         /// <returns></returns>
-        public static string? ReplaceWith(this string? value, string regexPattern, string replaceValue)
+        public static string ReplaceWith(this string value, string regexPattern, string replaceValue)
         {
             return ReplaceWith(value, regexPattern, replaceValue, RegexOptions.None);
         }
@@ -102,7 +101,7 @@ namespace RunUI
         /// <param name="replaceValue"></param>
         /// <param name="options"></param>
         /// <returns></returns>
-        public static string? ReplaceWith(this string? value, string regexPattern, string replaceValue, RegexOptions options)
+        public static string ReplaceWith(this string value, string regexPattern, string replaceValue, RegexOptions options)
         {
             return Regex.Replace(value, regexPattern, replaceValue, options);
         }
@@ -114,7 +113,7 @@ namespace RunUI
         /// <param name="regexPattern"></param>
         /// <param name="evaluator"></param>
         /// <returns></returns>
-        public static string? ReplaceWith(this string? value, string regexPattern, MatchEvaluator evaluator)
+        public static string ReplaceWith(this string value, string regexPattern, MatchEvaluator evaluator)
         {
             return ReplaceWith(value, regexPattern, RegexOptions.None, evaluator);
         }
@@ -127,7 +126,7 @@ namespace RunUI
         /// <param name="options"></param>
         /// <param name="evaluator"></param>
         /// <returns></returns>
-        public static string? ReplaceWith(this string? value, string regexPattern, RegexOptions options, MatchEvaluator evaluator)
+        public static string ReplaceWith(this string value, string regexPattern, RegexOptions options, MatchEvaluator evaluator)
         {
             if (value.IsNullOrWhiteSpace())
             {
@@ -144,7 +143,7 @@ namespace RunUI
         /// <param name="replaceString"></param>
         /// <param name="isCaseInsensetive"></param>
         /// <returns></returns>
-        public static string? ReplaceWith(this string? value, string regexPattern, string replaceString, bool isCaseInsensetive)
+        public static string ReplaceWith(this string value, string regexPattern, string replaceString, bool isCaseInsensetive)
         {
             if (value.IsNullOrWhiteSpace())
             {
@@ -158,7 +157,7 @@ namespace RunUI
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static string? Reverse(this string? value)
+        public static string Reverse(this string value)
         {
             if (value.IsNullOrWhiteSpace()) return value;
             var chars = value.ToCharArray();
@@ -173,7 +172,7 @@ namespace RunUI
         /// <param name="regexPattern"></param>
         /// <param name="options"></param>
         /// <returns></returns>
-        public static string[] Split(this string? value, string regexPattern, RegexOptions options)
+        public static string[] Split(this string value, string regexPattern, RegexOptions options)
         {
             if (value.IsNullOrWhiteSpace())
             {
@@ -188,7 +187,7 @@ namespace RunUI
         /// <param name="value"></param>
         /// <param name="regexPattern"></param>
         /// <returns></returns>
-        public static string[] Split(this string? value, string regexPattern)
+        public static string[] Split(this string value, string regexPattern)
         {
             return value.Split(regexPattern, RegexOptions.None);
         }
@@ -199,7 +198,7 @@ namespace RunUI
         /// <param name="value"></param>
         /// <param name="splitstr"></param>
         /// <returns></returns>
-        public static string[] Split(this string? value, params string[] splitstr)
+        public static string[] Split(this string value, params string[] splitstr)
         {
             if (value.IsNullOrWhiteSpace()) return Array.Empty<string>();
             return value.Split(splitstr, StringSplitOptions.None);
@@ -211,7 +210,7 @@ namespace RunUI
         /// <param name="value"></param>
         /// <param name="splitstr"></param>
         /// <returns></returns>
-        public static string[] SplitWithoutEmpty(this string? value, params string[] splitstr)
+        public static string[] SplitWithoutEmpty(this string value, params string[] splitstr)
         {
             if (value.IsNullOrWhiteSpace()) return Array.Empty<string>();
             return value.Split(splitstr, StringSplitOptions.RemoveEmptyEntries);
@@ -222,7 +221,7 @@ namespace RunUI
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static List<string> Split逗号(this string? value)
+        public static List<string> Split逗号(this string value)
         {
             return value.SplitWithoutEmpty(",", "，").ToList();
         }
@@ -232,7 +231,7 @@ namespace RunUI
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static List<string> Split分号(this string? value)
+        public static List<string> Split分号(this string value)
         {
             return value.SplitWithoutEmpty("；", ";").ToList();
         }
@@ -242,7 +241,7 @@ namespace RunUI
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static List<string> Split逗号分号(this string? value)
+        public static List<string> Split逗号分号(this string value)
         {
             return value.SplitWithoutEmpty(",", "，", "；", ";").ToList();
         }
@@ -253,7 +252,7 @@ namespace RunUI
         /// <param name="value"></param>
         /// <param name="splitchar"></param>
         /// <returns></returns>
-        public static string[] SplitWithoutEmpty(this string? value, params char[] splitchar)
+        public static string[] SplitWithoutEmpty(this string value, params char[] splitchar)
         {
             if (value.IsNullOrWhiteSpace()) return Array.Empty<string>();
             return value.Split(splitchar, StringSplitOptions.RemoveEmptyEntries);
@@ -265,7 +264,7 @@ namespace RunUI
         /// <param name="str"></param>
         /// <param name="s"></param>
         /// <returns></returns>
-        public static bool StartsWithIgnoreCase(this string? str, string s)
+        public static bool StartsWithIgnoreCase(this string str, string s)
         {
             if (str.IsNullOrWhiteSpace() && s.IsNullOrWhiteSpace()) return true;
             if (str.IsNullOrWhiteSpace()) return false;
@@ -280,7 +279,7 @@ namespace RunUI
         /// <param name="start"></param>
         /// <param name="length"></param>
         /// <returns></returns>
-        public static string? SubStringExt(this string? str, int start, int length)
+        public static string SubStringExt(this string str, int start, int length)
         {
             if (str.IsNullOrWhiteSpace()) return str;
 
@@ -297,7 +296,7 @@ namespace RunUI
         /// <param name="str"></param>
         /// <param name="s"></param>
         /// <returns></returns>
-        public static string? Trim(this string? str, params string[] s)
+        public static string Trim(this string str, params string[] s)
         {
             if (str.IsNullOrWhiteSpace()) return str;
             return str.TrimStart(s).TrimEnd(s);
@@ -309,7 +308,7 @@ namespace RunUI
         /// <param name="str"></param>
         /// <param name="s"></param>
         /// <returns></returns>
-        public static string? TrimEnd(this string? str, params string[] s)
+        public static string TrimEnd(this string str, params string[] s)
         {
             if (str.IsNullOrWhiteSpace())
                 return str;
@@ -330,7 +329,7 @@ namespace RunUI
         /// <param name="str"></param>
         /// <param name="s"></param>
         /// <returns></returns>
-        public static string? TrimStart(this string? str, params string[] s)
+        public static string TrimStart(this string str, params string[] s)
         {
             if (str.IsNullOrWhiteSpace())
                 return str;

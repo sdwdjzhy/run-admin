@@ -15,7 +15,7 @@ namespace RunUI
         /// 获取当前动作名称
         /// </summary>
         /// <returns></returns>
-        public static string? GetActionName(this HttpContext context)
+        public static string GetActionName(this HttpContext context)
         {
             if (context == null) return "";
             var route = context.GetRouteData();
@@ -27,7 +27,7 @@ namespace RunUI
         /// 获取当前区域名称
         /// </summary>
         /// <returns></returns>
-        public static string? GetAreaName(this HttpContext context)
+        public static string GetAreaName(this HttpContext context)
         {
             if (context == null) return "";
             var route = context.GetRouteData();

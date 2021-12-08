@@ -28,9 +28,9 @@ namespace RunUI
         /// <param name="typeToConvert"></param>
         /// <param name="options"></param>
         /// <returns></returns>
-        public override JsonConverter? CreateConverter(Type typeToConvert, JsonSerializerOptions options)
+        public override JsonConverter CreateConverter(Type typeToConvert, JsonSerializerOptions options)
         {
-            return (JsonConverter?)Activator.CreateInstance(typeof(VCardEnumStringConverter<>).MakeGenericType(typeToConvert), BindingFlags.Instance | BindingFlags.Public, null, args: new object?[] { null }, null);
+            return (JsonConverter)Activator.CreateInstance(typeof(VCardEnumStringConverter<>).MakeGenericType(typeToConvert), BindingFlags.Instance | BindingFlags.Public, null, args: new object[] { null }, null);
         }
     }
 
@@ -42,9 +42,9 @@ namespace RunUI
         /// <summary>
         /// 是否 将 不限、未知，在输出时输出成 空字符串
         /// </summary>
-        private readonly IVCardEnumStringCustomerConverter<T>? customerConverter = null;
+        private readonly IVCardEnumStringCustomerConverter<T> customerConverter = null;
 
-        public VCardEnumStringConverter(IVCardEnumStringCustomerConverter<T>? customerConverter)
+        public VCardEnumStringConverter(IVCardEnumStringCustomerConverter<T> customerConverter)
         {
             this.customerConverter = customerConverter;
         }
@@ -56,7 +56,7 @@ namespace RunUI
         /// <param name="options"></param>
         /// <returns></returns>
         /// <exception cref="JsonException"></exception>
-        public override T? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        public override T Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
             var arr = reader.GetString();
 

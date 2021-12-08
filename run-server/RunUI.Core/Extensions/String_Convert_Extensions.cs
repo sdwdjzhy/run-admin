@@ -275,11 +275,11 @@ namespace RunUI
 
         //public static Nullable<T> ToNullable<T>(this string s) where T : struct
         //{
-        //    T? result = null;
+        //    T result = null;
         //    if (!s.Trim().IsNullOrWhiteSpace())
         //    {
-        //        TypeConverter converter = TypeDescriptor.GetConverter(typeof(T?));
-        //        result = (T?)converter.ConvertFrom(s);
+        //        TypeConverter converter = TypeDescriptor.GetConverter(typeof(T));
+        //        result = (T)converter.ConvertFrom(s);
         //    }
         //    return result;
         //}
@@ -374,7 +374,7 @@ namespace RunUI
         /// </summary>
         /// <param name="str"></param>
         /// <returns></returns>
-        public static DayOfWeek ToWeekDay(this string? str)
+        public static DayOfWeek ToWeekDay(this string str)
         {
             str = str?.Replace("星期", "")?.Replace("周", "");
             switch (str)

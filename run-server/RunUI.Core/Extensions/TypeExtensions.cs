@@ -15,6 +15,26 @@
             var p = type.GetProperty(prop);
             return p != null;
         }
+        /// <summary>
+        /// 是否存在某属性
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="prop"></param>
+        /// <returns></returns>
+        public static object GetPropertyValue<T>(this T obj, string prop)
+        {
+            var type = obj.GetType();
+            var p = type.GetProperty(prop);
+            if (p != null)
+            {
+                return p.GetValue(obj);
+            }
+            else
+            {
+                throw new InvalidOperationException($"【{type.Name}】不存在属性【{prop}】");
+            }
+        }
+
 
         /// <summary>
         /// 是否在枚举中定义了

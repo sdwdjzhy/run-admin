@@ -10,14 +10,14 @@ namespace RunUI
         /// <summary>
         /// 自定义 获取枚举类型
         /// </summary>
-        private static Func<Type, string?, List<KeyText<int>>?>? getEnumListCustom = null;
+        private static Func<Type, string, List<KeyText<int>>> getEnumListCustom = null;
 
         /// <summary>
         /// 自定义 获取枚举类型
         /// <para>第一个参数：枚举类型</para>
         /// <para>第二个参数：当前使用场景</para>
         /// </summary>
-        public static Func<Type, string?, List<KeyText<int>>?>? GetEnumListCustom { get => getEnumListCustom; set => getEnumListCustom = value; }
+        public static Func<Type, string, List<KeyText<int>>> GetEnumListCustom { get => getEnumListCustom; set => getEnumListCustom = value; }
 
         /// <summary>
         /// 获取描述
@@ -64,7 +64,7 @@ namespace RunUI
         /// </summary>
         /// <param name="t"></param>
         /// <returns></returns>
-        public static Dictionary<int, string> GetEnumKeyDescriptions(this Type t, string? state = null)
+        public static Dictionary<int, string> GetEnumKeyDescriptions(this Type t, string state = null)
         {
             if (!t.IsEnum) throw new ArgumentException($"【{t.Name}】不是枚举类型");
 
@@ -78,9 +78,7 @@ namespace RunUI
             }
             else
             {
-#pragma warning disable CS8619 // 值中的引用类型的为 Null 性与目标类型不匹配。
                 result = r.GroupBy(i => i.Key).ToDictionary(i => i.Key, i => i.FirstOrDefault().Text);
-#pragma warning restore CS8619 // 值中的引用类型的为 Null 性与目标类型不匹配。
             }
 
             return result;
