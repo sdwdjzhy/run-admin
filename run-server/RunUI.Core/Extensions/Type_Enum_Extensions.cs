@@ -10,14 +10,14 @@ namespace RunUI
         /// <summary>
         /// 自定义 获取枚举类型
         /// </summary>
-        private static Func<Type, string, List<KeyText<int>>> getEnumListCustom = null;
+        private static Func<Type, string, List<LabelValue<int>>> getEnumListCustom = null;
 
         /// <summary>
         /// 自定义 获取枚举类型
         /// <para>第一个参数：枚举类型</para>
         /// <para>第二个参数：当前使用场景</para>
         /// </summary>
-        public static Func<Type, string, List<KeyText<int>>> GetEnumListCustom { get => getEnumListCustom; set => getEnumListCustom = value; }
+        public static Func<Type, string, List<LabelValue<int>>> GetEnumListCustom { get => getEnumListCustom; set => getEnumListCustom = value; }
 
         /// <summary>
         /// 获取描述
@@ -78,7 +78,7 @@ namespace RunUI
             }
             else
             {
-                result = r.GroupBy(i => i.Key).ToDictionary(i => i.Key, i => i.FirstOrDefault().Text);
+                result = r.GroupBy(i => i.Value).ToDictionary(i => i.Key, i => i.FirstOrDefault().Label);
             }
 
             return result;
@@ -89,7 +89,7 @@ namespace RunUI
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
-        public static List<KeyText<int>> GetEnumMap(this Type t)
+        public static List<LabelValue<int>> GetEnumMap(this Type t)
         {
             if (!t.IsEnum) throw new ArgumentException($"【{t.Name}】不是枚举类型");
 
@@ -97,7 +97,7 @@ namespace RunUI
 
             if (result != null) return result;
             var arr = Enum.GetValues(t);
-            return (from int i in arr select new KeyText<int>(i, GetEnumKeyDescription(t, i))).ToList();
+            return (from int i in arr select new LabelValue<int>(i, GetEnumKeyDescription(t, i))).ToList();
         }
 
         /// <summary>
@@ -111,6 +111,16 @@ namespace RunUI
             if (!t.IsEnum) throw new ArgumentException($"【{t.Name}】不是枚举类型");
 
             return Enum.IsDefined(t, i);
+        }
+ 
+        /// <summary>
+        /// 指示当前类型是否为 Nullable&lt;Enum&gt;
+        /// </summary>
+        /// <param name="T"></param>
+        /// <returns></returns>
+        public static bool IsEnumNullable(this Type T)
+        {
+            return T.HasImplementedRawGeneric(typeof(Nullable<>)) && T.GenericTypeArguments[0].IsEnum;
         }
     }
 }

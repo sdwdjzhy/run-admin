@@ -77,20 +77,20 @@ namespace RunUI
 
                 if (arr.HasValue())
                 {
-                    var n = enumList.Where(i => i.Text.Equals(arr) || i.Text.Replace("_", "-").Trim("-").Equals(arr)).FirstOrDefault();
+                    var n = enumList.Where(i => i.Label.Equals(arr) || i.Label.Replace("_", "-").Trim("-").Equals(arr)).FirstOrDefault();
                     if (n != null)
                     {
-                        var value = (T)Enum.Parse(newType, n.Text);
+                        var value = (T)Enum.Parse(newType, n.Label);
 
                         return GetEnum(value);
                     }
                 }
                 if (customerConverter?.IsNeedRemoveLimit ?? true)
                 {
-                    var n = enumList.Where(i => i.Text.Equals("不限") || i.Text.Equals("未知")).FirstOrDefault();
+                    var n = enumList.Where(i => i.Label.Equals("不限") || i.Label.Equals("未知")).FirstOrDefault();
                     if (n != null)
                     {
-                        var value = (T)Enum.Parse(newType, n.Text);
+                        var value = (T)Enum.Parse(newType, n.Label);
                         return GetEnum(value);
                     }
                 }
