@@ -8,6 +8,7 @@ namespace RunUI.SysModels
         /// <summary>
         /// 租户编号
         /// </summary>
+        [MaxLength(255)]
         [Description("租户编号")]
         [Required]
         public string TenantId { get; set; }

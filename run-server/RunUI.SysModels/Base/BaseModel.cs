@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace RunUI.SysModels
 {
-    public abstract class BaseModel : IDeleteEntity, ICreateTimeEntity, IUpdateTimeEntity
+    public abstract class BaseModel : ICreateTimeEntity, IUpdateTimeEntity
     {
         /// <summary>
         /// 编号
@@ -15,11 +15,11 @@ namespace RunUI.SysModels
         public string Id { get; set; }
 
         /// <summary>
-        /// 是否已经删除
+        /// 状态
         /// </summary>
         [Required]
-        [Description("是否已经删除")]
-        public bool IsDeleted { get; set; }
+        [Description("状态")]
+        public int Flag { get; set; }
 
         /// <summary>
         /// 创建时间
@@ -36,5 +36,14 @@ namespace RunUI.SysModels
         [Required]
         [Description("更新时间")]
         public DateTime UpdateTime { get; set; }
+
+
+        /// <summary>
+        /// 最后一次操作用户编号
+        /// </summary>
+        [Column(DbType = "varchar(50) NOT NULL")]
+        [Required]
+        [Description("最后一次操作用户编号")]
+        public string OperateUserId { get; set; }
     }
 }
