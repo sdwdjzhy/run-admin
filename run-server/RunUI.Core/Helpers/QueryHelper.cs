@@ -13,9 +13,9 @@ using System.Threading.Tasks;
 namespace RunUI
 {
 
-    public class QueryHelper<T> where T : class, new()
+    public class QueryHelper<T> where T : class
     {
-        Logger Logger = LogManager.GetCurrentClassLogger();
+        readonly Logger Logger = LogManager.GetCurrentClassLogger();
         private readonly Stream stream;
 
         private JObject obj = null;
@@ -256,7 +256,7 @@ namespace RunUI
                                 whereHelper.ArrayContains(p, list);
                             }
                         }
-                        else  
+                        else
                         {
                             var o = GetValue(value, structType, p.Name);
                             if (o != null)
@@ -292,7 +292,7 @@ namespace RunUI
             {
                 page = p > 0 ? p : 1;
             }
-            if (obj["size"] is JValue sizeValue && sizeValue.Value is int s)
+            if (obj["size"] is JValue sizeValue && sizeValue.Value is long s)
             {
                 size = s > 0 ? s : 20;
             }

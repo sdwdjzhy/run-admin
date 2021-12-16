@@ -15,4 +15,9 @@
     <ProjectReference Include="..\RunUI.Core\RunUI.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Entities\" />
+    <Folder Include="Helpers\" />
+  </ItemGroup>
+
 </Project>
