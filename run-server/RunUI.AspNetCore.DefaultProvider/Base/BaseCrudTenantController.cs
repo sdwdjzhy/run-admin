@@ -16,7 +16,7 @@ namespace RunUI
             TenantProvider = this.GetService<ITenantProvider>();
 
             var tenantId = await TenantProvider.GetTenantId();
-            Repository = Orm.GetRepository<T>(i => i.TenantId == tenantId && i.IsDeleted == false);
+            Repository = Orm.GetRepository<T>(i => i.TenantId == tenantId && i.Flag >= 0);
             await base.OnActionExecutionAsync(context, next);
         }
     }
