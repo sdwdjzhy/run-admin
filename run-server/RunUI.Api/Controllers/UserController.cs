@@ -4,7 +4,7 @@ using RunUI.SysModels;
 
 namespace RunUI.Api.Controllers
 {
-    public class UserController : BaseCrudTenantController<TSysUser>
+    public class UserController : BaseCrudController<TSysUser>
     {
         [HttpGet]
         public async Task<object> List(int page = 1, int size = 20)

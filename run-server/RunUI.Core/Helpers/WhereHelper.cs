@@ -24,9 +24,9 @@ namespace RunUI
         /// </summary>
         public WhereHelper()
         {
-            Paramater = Expression.Parameter(typeof(T), "c");
-            filter = null;
             type = typeof(T);
+            Paramater = Expression.Parameter(type, "c");
+            filter = null;
         }
 
         public void And(Expression result)

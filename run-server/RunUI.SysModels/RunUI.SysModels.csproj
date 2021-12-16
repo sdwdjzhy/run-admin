@@ -13,7 +13,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\RunUI.Core\RunUI.Core.csproj" />
-    <ProjectReference Include="..\RunUI.Tenant\RunUI.Tenant.csproj" />
   </ItemGroup>
 
 </Project>

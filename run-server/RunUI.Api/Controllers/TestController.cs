@@ -6,7 +6,7 @@ using RunUI.SysModels;
 
 namespace RunUI.Api.Controllers
 {
-    public class TestController : BaseCrudTenantController<TSysTest>
+    public class TestController : BaseCrudController<TSysTest>
     {
 
         [HttpPost]

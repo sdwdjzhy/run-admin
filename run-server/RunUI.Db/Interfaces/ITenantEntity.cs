@@ -2,7 +2,7 @@
 
 namespace RunUI
 {
-    public interface ITenantEntity
+    public interface ITenantEntity :IBaseModel
     {
         /// <summary>
         /// 租户编号

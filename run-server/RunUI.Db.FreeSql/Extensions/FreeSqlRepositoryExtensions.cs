@@ -24,7 +24,7 @@ namespace RunUI
 
             return new PagedList<T>() { Page = page, PageSize = size, Rows = rows, Total = total };
         }
-        public static async Task<PagedList<K>> ToPagedListAsync<T, K>(this IBaseRepository<T> repository, QueryHelper<T> qg, Expression<Func<T, K>> selector, Expression<Func<T, K>> orderBy, bool descending = true) where T : class
+        public static async Task<PagedList<K>> ToPagedListAsync<T, K, M>(this IBaseRepository<T> repository, QueryHelper<T> qg, Expression<Func<T, K>> selector, Expression<Func<T, M>> orderBy, bool descending = true) where T : class
         {
             var where = await qg.GetExpression();
             var (page, size) = await qg.GetPageInfo();

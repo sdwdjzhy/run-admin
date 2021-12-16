@@ -2,9 +2,9 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace RunUI.SysModels
+namespace RunUI
 {
-    public abstract class BaseModel : ICreateTimeEntity, IUpdateTimeEntity
+    public abstract class BaseModel : IBaseModel
     {
         /// <summary>
         /// 编号

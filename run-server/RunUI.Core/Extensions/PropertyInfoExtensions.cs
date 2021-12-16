@@ -21,17 +21,6 @@ namespace RunUI
             return p.Name;
         }
 
-        /// <summary>
-        /// 属性是否包含有指定属性
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="prop"></param>
-        /// <returns></returns>
-        public static bool IsPropertyHasAttribute<T>(this PropertyInfo prop, out T attr) where T : Attribute
-        {
-            attr = prop.GetPropertyAttributes<T>().FirstOrDefault();
-            return attr != null;
-        }
 
         /// <summary>
         /// </summary>
@@ -80,6 +69,17 @@ namespace RunUI
         public static bool IsPropertyHasAttribute<T>(this PropertyInfo prop) where T : Attribute
         {
             return prop.GetCustomAttributes(true).Any(i => i is T);
+        }
+        /// <summary>
+        /// 属性是否包含有指定属性
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="prop"></param>
+        /// <returns></returns>
+        public static bool IsPropertyHasAttribute<T>(this PropertyInfo prop, out T attr) where T : Attribute
+        {
+            attr = prop.GetCustomAttributes(true).OfType<T>().FirstOrDefault();
+            return attr != null;
         }
     }
 }

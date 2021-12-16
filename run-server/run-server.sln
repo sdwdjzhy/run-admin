@@ -16,11 +16,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RunUI.AspNetCore", "RunUI.A
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RunUI.SysModels", "RunUI.SysModels\RunUI.SysModels.csproj", "{93500D63-F928-4EC8-BB19-0A99FBF1618B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RunUI.AspNetCore.DefaultProvider", "RunUI.AspNetCore.DefaultProvider\RunUI.AspNetCore.DefaultProvider.csproj", "{3EF9ACDB-3AC8-4E12-ACE9-FCF20C6C9916}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RunUI.AspNetCore.DefaultProvider", "RunUI.AspNetCore.DefaultProvider\RunUI.AspNetCore.DefaultProvider.csproj", "{3EF9ACDB-3AC8-4E12-ACE9-FCF20C6C9916}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RunUI.Redis", "RunUI.Redis\RunUI.Redis.csproj", "{CAE3D9E6-59D9-4C5D-93D7-DF6A1805F085}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RunUI.Redis", "RunUI.Redis\RunUI.Redis.csproj", "{CAE3D9E6-59D9-4C5D-93D7-DF6A1805F085}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RunUI.Tenant", "RunUI.Tenant\RunUI.Tenant.csproj", "{FE197EFB-2E86-4324-89CE-9C91774FC8E5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RunUI.Db.FreeSql", "RunUI.Db.FreeSql\RunUI.Db.FreeSql.csproj", "{867C0070-C9B0-45C2-AFA7-5294288FFAAF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RunUI.Db", "RunUI.Db\RunUI.Db.csproj", "{25E31AD7-E29B-4E64-BE6F-2D3D5FF55A3E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RunUI.AspNetCore.FreeSql", "RunUI.AspNetCore.FreeSql\RunUI.AspNetCore.FreeSql.csproj", "{401D07BD-BBA9-4D0B-B1D3-EDC35F3CBEC2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -52,10 +56,18 @@ Global
 		{CAE3D9E6-59D9-4C5D-93D7-DF6A1805F085}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CAE3D9E6-59D9-4C5D-93D7-DF6A1805F085}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CAE3D9E6-59D9-4C5D-93D7-DF6A1805F085}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FE197EFB-2E86-4324-89CE-9C91774FC8E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FE197EFB-2E86-4324-89CE-9C91774FC8E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FE197EFB-2E86-4324-89CE-9C91774FC8E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FE197EFB-2E86-4324-89CE-9C91774FC8E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{867C0070-C9B0-45C2-AFA7-5294288FFAAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{867C0070-C9B0-45C2-AFA7-5294288FFAAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{867C0070-C9B0-45C2-AFA7-5294288FFAAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{867C0070-C9B0-45C2-AFA7-5294288FFAAF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{25E31AD7-E29B-4E64-BE6F-2D3D5FF55A3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25E31AD7-E29B-4E64-BE6F-2D3D5FF55A3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25E31AD7-E29B-4E64-BE6F-2D3D5FF55A3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25E31AD7-E29B-4E64-BE6F-2D3D5FF55A3E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{401D07BD-BBA9-4D0B-B1D3-EDC35F3CBEC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{401D07BD-BBA9-4D0B-B1D3-EDC35F3CBEC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{401D07BD-BBA9-4D0B-B1D3-EDC35F3CBEC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{401D07BD-BBA9-4D0B-B1D3-EDC35F3CBEC2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

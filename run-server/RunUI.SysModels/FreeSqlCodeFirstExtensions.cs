@@ -16,7 +16,7 @@
                     args.Index("{tablename}_TenantId_Flag_CreateTime_UpdateTime", "TenantId,Flag desc,CreateTime desc,UpdateTime desc", false);
                 });
             });
-            var baseTypes = typeof(FreeSqlCodeFirstExtensions).Assembly.GetTypes().Where(i => typeof(BaseModel).IsAssignableFrom(i))
+            var baseTypes = typeof(FreeSqlCodeFirstExtensions).Assembly.GetTypes().Where(i => typeof(IBaseModel).IsAssignableFrom(i))
                 .Where(i => !tenantTypes.Contains(i)).ToList();
             baseTypes.ForEach(type =>
             {

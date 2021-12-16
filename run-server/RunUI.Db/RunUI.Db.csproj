@@ -8,13 +8,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\RunUI.Core\RunUI.Core.csproj" />
-    <ProjectReference Include="..\RunUI.Db\RunUI.Db.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Base\" />
-    <Folder Include="Interfaces\" />
-    <Folder Include="Models\" />
   </ItemGroup>
 
 </Project>

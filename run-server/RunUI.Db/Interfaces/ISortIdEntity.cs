@@ -1,4 +1,4 @@
-﻿namespace RunUI.SysModels
+﻿namespace RunUI
 {
     public interface ISortIdEntity
     {

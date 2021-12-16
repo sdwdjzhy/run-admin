@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace RunUI.SysModels
+namespace RunUI
 {
     public abstract class BaseTenantModel : BaseModel, ITenantEntity
     {

@@ -24,6 +24,8 @@
     <ProjectReference Include="..\RunUI.AspNetCore.DefaultProvider\RunUI.AspNetCore.DefaultProvider.csproj" />
     <ProjectReference Include="..\RunUI.AspNetCore\RunUI.AspNetCore.csproj" />
     <ProjectReference Include="..\RunUI.Core\RunUI.Core.csproj" />
+    <ProjectReference Include="..\RunUI.Db.FreeSql\RunUI.Db.FreeSql.csproj" />
+    <ProjectReference Include="..\RunUI.Redis\RunUI.Redis.csproj" />
     <ProjectReference Include="..\RunUI.SysModels\RunUI.SysModels.csproj" />
   </ItemGroup>
 
