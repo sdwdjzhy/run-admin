@@ -22,6 +22,18 @@ namespace RunUI
         }
 
         /// <summary>
+        /// 属性是否包含有指定属性
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="prop"></param>
+        /// <returns></returns>
+        public static bool IsPropertyHasAttribute<T>(this PropertyInfo prop, out T attr) where T : Attribute
+        {
+            attr = prop.GetPropertyAttributes<T>().FirstOrDefault();
+            return attr != null;
+        }
+
+        /// <summary>
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="prop"></param>
